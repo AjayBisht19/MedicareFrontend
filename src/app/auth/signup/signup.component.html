@@ -1,0 +1,87 @@
+<div class="bootstrap-wrapper" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+
+            <mat-card class="example-card">
+                <mat-card-header>
+
+                    <mat-card-title>Registration</mat-card-title>
+                    <mat-card-subtitle>Medicare</mat-card-subtitle>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <br>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+                            <form [formGroup]="userForm" class="example-form" (ngSubmit)="submit()">
+
+
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Email </mat-label>
+                                    <input matInput type="email" required formControlName="email">
+                                    <mat-hint style="color: red;"
+                                        *ngIf="userForm.get('email').touched && userForm.get('email').invalid">
+                                        <p *ngIf="userForm.get('email').errors.required"> Email is required</p>
+                                        <p *ngIf="userForm.get('email').errors.email"> Must be a valid Email address</p>
+
+                                    </mat-hint>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Your name</mat-label>
+                                    <input matInput type="text" required formControlName="name">
+                                    <mat-hint style="color: red;"
+                                        *ngIf="userForm.get('name').touched && userForm.get('name').invalid">
+                                        <p *ngIf="userForm.get('name').errors.required"> Name is required</p>
+
+                                    </mat-hint>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" required formControlName="password">
+                                    <mat-hint style="color: red;"
+                                        *ngIf="userForm.get('password').touched && userForm.get('password').invalid">
+                                        <p *ngIf="userForm.get('password').errors.required"> Password is required</p>
+                                        <p *ngIf="userForm.get('password').errors.minlength"> Length of password must be
+                                            atleast 6</p>
+                                    </mat-hint>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput required formControlName="address"></textarea>
+                                    <mat-hint style="color: red;"
+                                        *ngIf="userForm.get('address').touched && userForm.get('address').invalid">
+                                        <p *ngIf="userForm.get('address').errors.required"> address is required</p>
+                                    </mat-hint>
+                                </mat-form-field>
+
+
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput [(ngModel)]="username" type="text" required
+                                        formControlName="username">
+                                    <mat-hint align="end">Username must be unique </mat-hint>
+                                    <mat-hint style="color: red;"
+                                        *ngIf="userForm.get('username').touched && userForm.get('username').invalid">
+                                        <p *ngIf="userForm.get('username').errors.required"> Username is required</p>
+                                    </mat-hint>
+                                    <mat-hint style="color: red;" *ngIf="flag">This username already exist </mat-hint>
+                                    <mat-hint *ngIf="flag==false">This is unique</mat-hint>
+                                </mat-form-field>
+                                <br>
+                                <mat-card-actions align="center">
+                                    <small style="color: red;" *ngIf="notVerified">Verify a unique username
+                                        first</small>
+                                    <br>
+                                    <button mat-raised-button color="primary" type="submit"
+                                        [disabled]="userForm.invalid">Submit</button>
+                                    <button mat-raised-button color="accent" (click)="clear()">Clear</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <br><br>
+        </div>
+    </div>
+</div>

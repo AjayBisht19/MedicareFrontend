@@ -1,0 +1,50 @@
+<div class="bootstrap-wrapper" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+
+            <mat-card class="example-card">
+                <mat-card-header>
+
+                    <mat-card-title>Login</mat-card-title>
+                    <mat-card-subtitle>Medicare</mat-card-subtitle>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <br>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+                            <form [formGroup]="loginForm" class="example-form" (ngSubmit)="submit()">
+
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput type="text" required
+                                        formControlName="username">
+                                    <mat-hint style="color: red;"
+                                        *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid">
+                                        <p *ngIf="loginForm.get('username').errors.required"> Username is required</p>
+                                    </mat-hint>
+                                </mat-form-field><br>
+
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" required formControlName="password">
+                                    <mat-hint style="color: red;"
+                                        *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
+                                        <p *ngIf="loginForm.get('password').errors.required"> Password is required</p>
+                                       
+                                    </mat-hint>
+                                </mat-form-field>
+                                <br>
+                                <mat-card-actions align="center">
+                                    <button mat-raised-button color="primary" type="submit"
+                                        [disabled]="loginForm.invalid">Login</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <br><br>
+        </div>
+    </div>
+</div>
