@@ -1,0 +1,36 @@
+.example-card {
+    max-width: 300px;
+  }
+ .example-full-width{
+   width:25%;
+ }
+.d-flex {
+  display: flex !important;
+}
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+.justify-content-center {
+  justify-content: center !important;
+}
+
+  
+  
+
+  .mat-card img{
+    height:250px;
+    width: 100%;
+    object-fit:cover;
+  }
+
+  .editIcon{
+    margin-right: 20px;
+    color: green;
+    cursor: pointer;
+  }
+  .deleteIcon{
+    margin-right: 20px;
+    color: red;
+    cursor: pointer;
+  }
+  

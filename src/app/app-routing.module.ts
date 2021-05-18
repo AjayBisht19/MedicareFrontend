@@ -1,3 +1,5 @@
+import { ManageComponent } from './admin/manage/manage.component';
+import { ProfileComponent } from './common/profile/profile.component';
 import { AdminGuardGuard } from './admin/admin-guard.guard';
 import { UserGuardGuard } from './user/user-guard.guard';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -11,7 +13,10 @@ const routes: Routes = [
   { path: "", component: SignupComponent, pathMatch:'full'},
   { path: "login", component: LoginComponent },
   { path: "user", component: UserDashboardComponent,canActivate:[UserGuardGuard] },
-  { path: "admin", component: AdminDashboardComponent ,canActivate:[AdminGuardGuard]},
+  { path: "admin", component: AdminDashboardComponent ,canActivate:[AdminGuardGuard],children:[
+    {path:"profile" ,component:ProfileComponent},
+    {path:"manage" ,component:ManageComponent}
+  ]},
 
 ];
 

@@ -1,0 +1,62 @@
+<mat-card>
+  <mat-action-list>
+    <button mat-list-item (click)="openDialog()">
+      <mat-icon mat-list-icon>add</mat-icon> Add product
+    </button>
+  </mat-action-list>
+  <br><br>
+  <button mat-raised-button color="primary" [(disabled)]="disDate" style="margin-right: 10px;" (click)="date()">Sort by
+    Date</button>
+  <button mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()">Sort by Unit
+    price</button><br><br>
+  Filter by : <br>
+  <span *ngFor="let category of categories" style="margin-top: 10px;">
+    <button mat-raised-button color="accent" style="margin-right: 10px;"
+      (click)="byCategory(category)">{{category}}</button>
+  </span>
+  <br>
+  <button mat-raised-button color="warn" style="margin-top: 10px;" (click)="ngOnInit()" [(disabled)]="allProducts">
+    All Products
+  </button>
+
+  <div class="bootstrap-wrapper" style="margin-top: 20px;">
+    <div class="container-fluid">
+      <div align="end">
+        <mat-form-field class="example-full-width" style="margin-right: 20px;">
+          <mat-label>Search by product name</mat-label>
+          <input matInput [(ngModel)]="search">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="searchByName()">Search</button>
+      </div>
+    </div>
+  </div>
+  <!-- products view -->
+
+  <div class="d-flex flex-wrap justify-content-center">
+    <div *ngFor="let product of products">
+      <mat-card class="example-card" style="margin: 10px;">
+        <mat-card-header>
+          <mat-card-title>{{product.name}}</mat-card-title>
+        </mat-card-header>
+        <img [src]="product.image" alt="image">
+        <mat-card-content align="end">
+
+          <h2>&#8377; {{product.price}}</h2>
+          
+        </mat-card-content>
+        <mat-card-actions align="start">
+          <mat-icon mat-list-icon class="editIcon">edit</mat-icon>
+          <mat-icon mat-list-icon class="deleteIcon" (click)="delete(product.id)">delete</mat-icon>
+          <mat-slide-toggle [(checked)]="product.active" (click)="active(product.id)"></mat-slide-toggle>
+
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+
+
+
+  <!-- products view end -->
+  <br>
+</mat-card>

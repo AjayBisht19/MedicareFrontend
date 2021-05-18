@@ -14,10 +14,9 @@ import swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
 
   userForm: FormGroup;
-  constructor(private http: HttpClient, private authService: AuthServiceService, private router: Router,private snack:MatSnackBar) { }
+  constructor(private http: HttpClient, private authService: AuthServiceService, private router: Router, private snack: MatSnackBar) { }
   username: any;
   flag: any;
-  notVerified: boolean = false;
 
   ngOnInit(): void {
     this.userForm = new FormGroup({
@@ -31,7 +30,6 @@ export class SignupComponent implements OnInit {
         Validators.minLength(6),
       ]),
       address: new FormControl('', Validators.required),
-      // username: new FormControl('', [Validators.required, this.customvalidator.unique.bind(this.customvalidator)]),
       username: new FormControl('', Validators.required)
     });
   }
@@ -39,33 +37,29 @@ export class SignupComponent implements OnInit {
   submit() {
     this.flag = true
     this.checkUser()
-    setTimeout(() => {
-      console.log("checking flag")
-      console.log(this.flag)
-      if (this.flag) {
-        this.notVerified = true;
-        this.snack.open('Username already exist', 'OK', {
-          duration: 2000
-        });
-      } else {
-        console.log(this.authService.signup(this.userForm.value));
-        swal.fire('Successfully Registered',"",'success');
-        this.router.navigate(['/login'])
-
-      }
-    }, 1000);
   }
+
   clear() {
     this.userForm.reset();
   }
-  checkUser() {
-    this.http.get(`http://localhost:8080/checkUsername/${this.username}`).subscribe(res => {
-      this.flag = res;
-      if (!res) {
-        this.notVerified = false;
-      }
-    })
+  async checkUser() {
+    let res = await this.http.get(`http://localhost:8080/checkUsername/${this.username}`).toPromise();
 
 
+    console.log("Res", res)
+    this.flag = res;
+
+    console.log("checking flag")
+    console.log(this.flag)
+
+    if (this.flag) {
+      this.snack.open('Username already exist', 'OK', {
+        duration: 2000
+      });
+    } else {
+      console.log(this.authService.signup(this.userForm.value));
+      swal.fire('Successfully Registered', "", 'success');
+      this.router.navigate(['/login']);
+    }
   }
 }

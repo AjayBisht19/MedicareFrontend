@@ -28,4 +28,11 @@ export class AppComponent {
     // window.location.reload()
     this.router.navigate(['login'])
   }
+
+  opened=false;
+  drawer(){
+    
+    this.opened=!this.opened;
+    console.log(this.opened)
+  }
 }
