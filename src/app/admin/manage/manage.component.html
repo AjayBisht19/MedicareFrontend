@@ -5,10 +5,12 @@
     </button>
   </mat-action-list>
   <br><br>
-  <button mat-raised-button color="primary" [(disabled)]="disDate" style="margin-right: 10px;" (click)="date()">Sort by
-    Date</button>
-  <button mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()">Sort by Unit
-    price</button><br><br>
+  <button mat-raised-button color="primary" [(disabled)]="disDate" style="margin-right: 10px;" (click)="date()">
+    Sort by Date
+  </button>
+  <button mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()">
+    Sort by Unit price
+  </button><br><br>
   Filter by : <br>
   <span *ngFor="let category of categories" style="margin-top: 10px;">
     <button mat-raised-button color="accent" style="margin-right: 10px;"
@@ -44,12 +46,17 @@
           <h2>&#8377; {{product.price}}</h2>
           
         </mat-card-content>
-        <mat-card-actions align="start">
-          <mat-icon mat-list-icon class="editIcon">edit</mat-icon>
-          <mat-icon mat-list-icon class="deleteIcon" (click)="delete(product.id)">delete</mat-icon>
+        
+          <!-- <mat-icon mat-list-icon class="editIcon">edit</mat-icon> -->
+          <button mat-raised-button color="primary" routerLink="/admin/manage/product/{{product.id}}" style="margin-right: 10px;">
+            edit
+          </button>
+          
+          <button mat-raised-button color="warn" (click)="delete(product.id)">delete</button><br><br>
+          
           <mat-slide-toggle [(checked)]="product.active" (click)="active(product.id)"></mat-slide-toggle>
 
-        </mat-card-actions>
+       
       </mat-card>
 
     </div>

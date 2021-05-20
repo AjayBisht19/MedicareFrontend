@@ -39,9 +39,9 @@ export class SignupComponent implements OnInit {
     this.checkUser()
   }
 
-  clear() {
-    this.userForm.reset();
-  }
+  // clear() {
+  //   this.userForm.reset();
+  // }
   async checkUser() {
     let res = await this.http.get(`http://localhost:8080/checkUsername/${this.username}`).toPromise();
 

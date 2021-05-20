@@ -1,22 +1,6 @@
-<!-- <mat-drawer-container class="example-container">
-  <mat-drawer mode="over" [(opened)]="opened">
-    <button mat-button disabled>Menu</button><br>
-    <mat-icon>home</mat-icon>
-    <button mat-button > Home</button><br>
-    <button mat-button >Dashboard</button><br>
-    <button mat-button >Cart</button><br>
-    <button mat-button >Order Summary</button><br>
 
-  </mat-drawer>
-  <mat-drawer-content>
-    
-  </mat-drawer-content>
-</mat-drawer-container> -->
 
 <mat-toolbar color="accent"> 
-  <!-- <button mat-icon-button (click)="drawer()" class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button> -->
   <span>Medicare</span>
   <span class="example-spacer"></span>
   <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/']" routerLinkActive="router-link-active"  class="example-icon favorite-icon mr-3" aria-label="Example icon-button with heart icon">
@@ -28,7 +12,10 @@
   <a *ngIf="isLoggedIn" mat-icon-button (click)="logout()" class="example-icon mr-3" aria-label="Example icon-button with share icon">
     <span>Log out</span>
   </a>
-  <button *ngIf="isLoggedIn && user" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button *ngIf="isLoggedIn && user && user.role=='admin'" routerLink="/admin" mat-icon-button class="example-icon mr-3 " aria-label="Example icon-button with share icon">
+    <span>{{user.name}}</span>
+  </button>
+  <button *ngIf="isLoggedIn && user && user.role=='user'" routerLink="/user" mat-icon-button class="example-icon mr-3" aria-label="Example icon-button with share icon">
     <span>{{user.name}}</span>
   </button>
  

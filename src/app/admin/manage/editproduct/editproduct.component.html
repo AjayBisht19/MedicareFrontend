@@ -1,7 +1,6 @@
 <form [formGroup]="productForm" (ngSubmit)="onUpload()">
-
     <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Product name</mat-label>
+        <mat-label>Updated name</mat-label>
         <input matInput type="text" required formControlName="name">
         <mat-hint style="color: red;" *ngIf="productForm.get('name').touched && productForm.get('name').invalid">
             <p *ngIf="productForm.get('name').errors.required"> Name is required</p>
@@ -9,7 +8,7 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Product Category</mat-label>
+        <mat-label>Updated Category</mat-label>
         <input matInput type="text" required formControlName="category">
         <mat-hint style="color: red;"
             *ngIf="productForm.get('category').touched && productForm.get('category').invalid">
@@ -18,7 +17,7 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Product Quantity</mat-label>
+        <mat-label>Updated Quantity</mat-label>
         <input matInput type="number" required formControlName="quantity">
         <mat-hint style="color: red;"
             *ngIf="productForm.get('quantity').touched && productForm.get('quantity').invalid">
@@ -27,7 +26,7 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Product Unit price</mat-label>
+        <mat-label>Updated Unit price</mat-label>
         <input matInput type="number" required formControlName="price">
         <mat-hint style="color: red;" *ngIf="productForm.get('price').touched && productForm.get('price').invalid">
             <p *ngIf="productForm.get('price').errors.required"> Unit price is required</p>
@@ -35,7 +34,7 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Product Seller</mat-label>
+        <mat-label>Updated Seller</mat-label>
         <input matInput type="text" required formControlName="seller">
         <mat-hint style="color: red;" *ngIf="productForm.get('seller').touched && productForm.get('seller').invalid">
             <p *ngIf="productForm.get('seller').errors.required"> Seller is required</p>
@@ -43,7 +42,7 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Product Description</mat-label>
+        <mat-label>Updated Description</mat-label>
         <textarea matInput required formControlName="descr"></textarea>
         <mat-hint style="color: red;" *ngIf="productForm.get('descr').touched && productForm.get('descr').invalid">
             <p *ngIf="productForm.get('descr').errors.required"> Description is required</p>
@@ -52,8 +51,10 @@
     <br>
 
     <input (change)="onFileChanged($event)" type="file" accept="image/png, image/jpeg" required>
+    <span style="color: red;">Image is mandatory.</span>
+    
     <br><br>
 
-    <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="" [disabled]="productForm.invalid">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="" [disabled]="productForm.invalid">Update</button>
 
 </form>

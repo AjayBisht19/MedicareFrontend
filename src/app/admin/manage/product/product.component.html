@@ -1,0 +1,46 @@
+<mat-card>
+    <div class="bootstrap-wrapper">
+        <div class="container-fluid text-center">
+    <img [src]="product.image" alt="image">
+    <br>
+    <hr>
+    <br>
+    <table>
+        <tr>
+            <td><h2>Name</h2></td>
+            <td><h2>{{product.name}}</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Category</h2></td>
+            <td><h2>{{product.category}}</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Price</h2></td>
+            <td><h2>{{product.price}}</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Quantity</h2></td>
+            <td><h2>{{product.quantity}} available</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Seller</h2></td>
+            <td><h2>{{product.seller}} </h2></td>
+        </tr>
+        <tr>
+            <td><h2>Description</h2></td>
+            <td><h2>{{product.descr}} </h2></td>
+        </tr>
+        <tr>
+            <td><h2>Active</h2></td>
+            <td><h2 *ngIf="product.active" style="color: green;"> Active</h2><h2 *ngIf="!product.active" style="color: red;"> Inactive</h2></td>
+
+        </tr>
+        
+
+    </table>  
+    <button mat-raised-button color="primary"  (click)="openDialog()">Edit Product</button>
+    </div>
+    </div> 
+    <br>
+    <br>
+</mat-card><br>

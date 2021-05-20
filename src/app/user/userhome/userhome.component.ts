@@ -1,23 +1,15 @@
-import { Router } from '@angular/router';
-import { product } from './product';
 import { HttpClient } from '@angular/common/http';
-import { AddproductComponent } from './addproduct/addproduct.component';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { product } from 'src/app/admin/manage/product';
 
 @Component({
-  selector: 'app-manage',
-  templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.css']
+  selector: 'app-userhome',
+  templateUrl: './userhome.component.html',
+  styleUrls: ['./userhome.component.css']
 })
-export class ManageComponent implements OnInit {
-  openDialog() {
-    this.dialog.open(AddproductComponent);
-  }
+export class UserhomeComponent implements OnInit {
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   products: product[] = [];
   categories: [];
@@ -32,7 +24,8 @@ export class ManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.allProducts = true;
-    this.http.get<object[]>(`http://localhost:8080/products`).subscribe((data: any) => {
+    this.http.get<object[]>(`http://localhost:8080/user/products`).subscribe((data: any) => {
+
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -40,24 +33,13 @@ export class ManageComponent implements OnInit {
         this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
         this.products.push(this.main);
       })
+    },error=>{
+      console.log("error ",error);
     })
 
-    this.http.get(`http://localhost:8080/products/categories`).subscribe((data: any) => {
+    this.http.get(`http://localhost:8080/user/products/categories`).subscribe((data: any) => {
       this.categories = data;
     })
-  }
-
-
-
-  delete(id) {
-    console.log(id);
-    this.http.delete(`http://localhost:8080/admin/product/${id}`).subscribe(data => {
-    })
-    this.router.navigate(['/admin']);
-  }
-
-  active(id) {
-    this.http.patch(`http://localhost:8080/admin/product/${id}`, null).subscribe();
   }
 
   date() {
@@ -69,7 +51,7 @@ export class ManageComponent implements OnInit {
   price() {
     this.disDate = false;
     this.disPrice = true;
-    this.http.get<object[]>(`http://localhost:8080/products/sortByPrice`).subscribe((data: any) => {
+    this.http.get<object[]>(`http://localhost:8080/user/products/sortByPrice`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -81,8 +63,10 @@ export class ManageComponent implements OnInit {
   }
 
   byCategory(category) {
+    this.disDate = false;
+    this.disPrice = false;
     this.allProducts = false;
-    this.http.get<object[]>(`http://localhost:8080/products/${category}`).subscribe((data: any) => {
+    this.http.get<object[]>(`http://localhost:8080/user/products/${category}`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -95,7 +79,7 @@ export class ManageComponent implements OnInit {
 
   searchByName(){
     this.allProducts = false;
-    this.http.get(`http://localhost:8080/product/${this.search}`).subscribe((data: any) => {
+    this.http.get(`http://localhost:8080/user/product/${this.search}`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -105,4 +89,5 @@ export class ManageComponent implements OnInit {
       })
     })
   }
+
 }

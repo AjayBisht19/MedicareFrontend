@@ -1,0 +1,15 @@
+.mat-card img{    
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit:cover;
+    border:5px solid lightcoral;
+  }
+  table{
+      width: 100%;
+  }
+ tr td:nth-child(2){
+     color: blueviolet;
+ }
+
+  

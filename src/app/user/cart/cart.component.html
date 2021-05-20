@@ -1,0 +1,30 @@
+<div class="bootstrap-wrapper mt-20">
+    <div class="row">
+        <div class="col-lg-9">
+            <mat-card>                
+                    <div *ngFor="let product of products">
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <img [src]="product.image" alt="image">
+                            </div>
+                            <div class="col-md-9">
+                                <mat-card>
+                                <h4>Name : {{product.name}}</h4>
+                                <h4>Category : {{product.category}}</h4>
+                                <h4>Price : &#8377; {{product.price}}</h4>
+                                <h4>Quantity : {{product.quantity}} available</h4>
+                            </mat-card>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="container-fluid text-center">
+                    <button mat-raised-button color="primary">buy now</button>
+                </div>
+            </mat-card><br>
+        </div>
+        <div class="col-lg-3 ">
+            <mat-card></mat-card>
+        </div>
+    </div>
+</div>

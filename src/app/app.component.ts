@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public isLoggedIn=false;
   user=null;
+  role=null;
   constructor(public login:AuthServiceService,private router:Router){
 
   }
@@ -21,6 +22,7 @@ export class AppComponent {
       this.isLoggedIn=this.login.isLoggedIn()
       this.user=this.login.getUser()
     })
+    this.role=this.login.getUserRole;
   }
   title = 'Medicare';
   logout(){

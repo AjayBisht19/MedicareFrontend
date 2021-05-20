@@ -31,6 +31,13 @@ import { MatListModule } from '@angular/material/list';
 import { ManageComponent } from './admin/manage/manage.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddproductComponent } from './admin/manage/addproduct/addproduct.component';
+import { ProductComponent } from './admin/manage/product/product.component';
+import { EditproductComponent } from './admin/manage/editproduct/editproduct.component';
+import { HomeComponent } from './admin/home/home/home.component';
+import { UsersidebarComponent } from './user/usersidebar/usersidebar.component';
+import { UserhomeComponent } from './user/userhome/userhome.component';
+import { CartComponent } from './user/cart/cart.component';
+import { UserproductComponent } from './user/userhome/userproduct/userproduct.component';
 
 
 @NgModule({
@@ -43,7 +50,14 @@ import { AddproductComponent } from './admin/manage/addproduct/addproduct.compon
     ProfileComponent,
     SidebarComponent,
     ManageComponent,
-    AddproductComponent
+    AddproductComponent,
+    ProductComponent,
+    EditproductComponent,
+    HomeComponent,
+    UsersidebarComponent,
+    UserhomeComponent,
+    CartComponent,
+    UserproductComponent
   ],
   imports: [
     BrowserModule,
