@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
 
   openDialog(){
     console.log("edit")
-    this.dialog.open(EditproductComponent,{data:{id:this.product}});
+    this.dialog.open(EditproductComponent,{data:{id:this.product.id}});
   }
 
 }

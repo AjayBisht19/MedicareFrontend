@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-manage',
@@ -15,7 +17,7 @@ export class ManageComponent implements OnInit {
     this.dialog.open(AddproductComponent);
   }
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) {
+  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router,private snack:MatSnackBar) {
 
   }
 
@@ -51,13 +53,20 @@ export class ManageComponent implements OnInit {
 
   delete(id) {
     console.log(id);
-    this.http.delete(`http://localhost:8080/admin/product/${id}`).subscribe(data => {
+    this.http.delete(`http://localhost:8080/admin/product/${id}`,{responseType:'text'}).subscribe(data => {
     })
-    this.router.navigate(['/admin']);
+    window.location.reload();
+    this.snack.open('Item deleted', 'OK', {
+      duration: 2000
+    });
   }
 
   active(id) {
-    this.http.patch(`http://localhost:8080/admin/product/${id}`, null).subscribe();
+    this.http.patch(`http://localhost:8080/admin/product/${id}`, null,{responseType:"text"}).subscribe(data=>{
+      this.snack.open('Status changed', 'OK', {
+        duration: 2000
+      });
+    });
   }
 
   date() {

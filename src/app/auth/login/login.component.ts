@@ -25,8 +25,7 @@ export class LoginComponent implements OnInit {
     });
   }
   submit(){
-    this.loginService.generateToken(this.loginForm.value).subscribe((data: any)=>{
-     
+    this.loginService.generateToken(this.loginForm.value).subscribe((data: any)=>{     
       this.loginService.loginUser(data.token);
       this.loginService.getCurrentUser().subscribe((user:any)=>{
         this.loginService.setUser(user);

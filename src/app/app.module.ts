@@ -24,6 +24,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 import { ProfileComponent } from './common/profile/profile.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
@@ -78,7 +80,8 @@ import { UserproductComponent } from './user/userhome/userproduct/userproduct.co
     MatListModule,
     MatDialogModule,
     MatSlideToggleModule,
-    MatTableModule
+    MatTableModule,
+    MatBadgeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

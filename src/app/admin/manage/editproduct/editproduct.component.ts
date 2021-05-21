@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editproduct',
@@ -15,7 +17,7 @@ export class EditproductComponent implements OnInit {
   selectedFile: File;
   message: String;
   productForm: FormGroup;
-  constructor(private httpClient: HttpClient,private router: Router,@Inject(MAT_DIALOG_DATA) public data:any) { }
+  constructor(private httpClient: HttpClient,private router: Router,@Inject(MAT_DIALOG_DATA) public data:any, private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
@@ -35,24 +37,24 @@ export class EditproductComponent implements OnInit {
  
   onUpload() {
     const uploadImageData = new FormData();
-    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);    
-    this.httpClient.post(`http://localhost:8080/admin/product/${this.data.product.id}/editImage`, uploadImageData).subscribe((dat: any) => {
-     }, (data: any) => {
-      console.log("response status ", data.status)
-      if (data.status == 200) {
-        this.httpClient.post(`http://localhost:8080/admin/product/${this.data.product.id}/editData`, this.productForm.value).toPromise().then(data => {
+    uploadImageData.append('image', this.selectedFile, this.selectedFile.name); 
+    this.productForm['image'] = uploadImageData;   
+    console.log("//////////// ",this.data)
+    this.httpClient.post(`http://localhost:8080/admin/product/${this.data.id}/editImage`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
+    //  }, (data: any) => {
+      console.log("response status ", data)
+      if (data) {
+        this.httpClient.post(`http://localhost:8080/admin/product/${this.data.id}/editData`, this.productForm.value).toPromise().then(data => {
           console.log("product form " ,this.productForm.value)
-        this.router.navigate(['/admin/manage']);
-        }, error => {
+          swal.fire('Product updated', "", 'success');
+          window.location.reload();
         });
 
       }
+    },error=>{
+      this.snack.open('Image is compulsory', 'OK', {
+        duration: 2000
+      });
     })
-
-
   }
-
-
-
-
 }
