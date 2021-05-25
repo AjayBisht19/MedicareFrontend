@@ -2,7 +2,7 @@
 
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product name</mat-label>
-        <input matInput type="text" required formControlName="name">
+        <input matInput name="productName" type="text" required formControlName="name">
         <mat-hint style="color: red;" *ngIf="productForm.get('name').touched && productForm.get('name').invalid">
             <p *ngIf="productForm.get('name').errors.required"> Name is required</p>
         </mat-hint>
@@ -10,7 +10,7 @@
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product Category</mat-label>
-        <input matInput type="text" required formControlName="category">
+        <input matInput name="categroy" type="text" required formControlName="category">
         <mat-hint style="color: red;"
             *ngIf="productForm.get('category').touched && productForm.get('category').invalid">
             <p *ngIf="productForm.get('category').errors.required"> Category is required</p>
@@ -19,7 +19,7 @@
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product Quantity</mat-label>
-        <input matInput type="number" required formControlName="quantity">
+        <input matInput type="number" name="quantity" required formControlName="quantity">
         <mat-hint style="color: red;"
             *ngIf="productForm.get('quantity').touched && productForm.get('quantity').invalid">
             <p *ngIf="productForm.get('quantity').errors.required"> Quantity is required</p>
@@ -28,7 +28,7 @@
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product Unit price</mat-label>
-        <input matInput type="number" required formControlName="price">
+        <input matInput type="number" name="price" required formControlName="price">
         <mat-hint style="color: red;" *ngIf="productForm.get('price').touched && productForm.get('price').invalid">
             <p *ngIf="productForm.get('price').errors.required"> Unit price is required</p>
         </mat-hint>
@@ -36,7 +36,7 @@
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product Seller</mat-label>
-        <input matInput type="text" required formControlName="seller">
+        <input matInput type="text" name="seller" required formControlName="seller">
         <mat-hint style="color: red;" *ngIf="productForm.get('seller').touched && productForm.get('seller').invalid">
             <p *ngIf="productForm.get('seller').errors.required"> Seller is required</p>
         </mat-hint>
@@ -44,7 +44,7 @@
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product Description</mat-label>
-        <textarea matInput required formControlName="descr"></textarea>
+        <textarea matInput name="description" required formControlName="descr"></textarea>
         <mat-hint style="color: red;" *ngIf="productForm.get('descr').touched && productForm.get('descr').invalid">
             <p *ngIf="productForm.get('descr').errors.required"> Description is required</p>
         </mat-hint>

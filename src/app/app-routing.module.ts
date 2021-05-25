@@ -1,3 +1,4 @@
+import { OrdersComponent } from './user/orders/orders.component';
 import { UserproductComponent } from './user/userhome/userproduct/userproduct.component';
 import { CartComponent } from './user/cart/cart.component';
 import { UserhomeComponent } from './user/userhome/userhome.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path:"profile",component:ProfileComponent},
     {path:"cart",component:CartComponent},
     {path:"product/:id",component:UserproductComponent},
+    {path:"orders",component:OrdersComponent}
   ]},
   { path: "admin", component: AdminDashboardComponent ,canActivate:[AdminGuardGuard],children:[
     {path:"" ,component:HomeComponent},

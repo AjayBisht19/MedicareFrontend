@@ -1,37 +1,21 @@
 <mat-card>
     <div class="bootstrap-wrapper">
-        <div class="container-fluid text-center">
-    <img [src]="product.image" alt="image">
+        <div class="container-fluid ">
+            <div class="text-center">
+    <img [src]="product.image" alt="image"></div>
     <br>
     <hr>
     <br>
-    <table>
-        <tr>
-            <td><h2>Name</h2></td>
-            <td><h2>{{product.name}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Category</h2></td>
-            <td><h2>{{product.category}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Price</h2></td>
-            <td><h2>&#8377; {{product.price}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Quantity</h2></td>
-            <td><h2>{{product.quantity}} available</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Seller</h2></td>
-            <td><h2>{{product.seller}} </h2></td>
-        </tr>
-        <tr>
-            <td><h2>Description</h2></td>
-            <td><h2>{{product.descr}} </h2></td>
-        </tr>
+    <mat-card>
+        <b>Name : </b>{{product.name}} <br>
+        <b>Category : </b>{{product.category}} <br>
+        <b>Price : </b>{{product.price}} <br>
+        <b>Quantity : </b>{{product.quantity}} <br>
+        <b>Seller : </b>{{product.seller}} <br>
+        <b>Description : </b>{{product.descr}} <br>
 
-    </table>  
+    </mat-card><br>
+ 
     <button mat-raised-button color="primary" (click)="addToCart(product.id)">Add to Cart</button>
     </div>
     </div> 

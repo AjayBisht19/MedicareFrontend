@@ -1,0 +1,34 @@
+<mat-card >
+    <h1>Your Orders</h1>
+    <small>*Your orders will be delivered 1-2 days after your address confirmation.</small>
+    <hr>
+    <br>
+    <div *ngFor=" let order of orders">
+        <mat-card class="order">
+            <div class="bootstrap-wrapper">
+                <div class="container" align="end" style="margin-top: 10px;">
+                    <b> Order Date :</b> {{order.date}} <br>
+                    <b>Order ID :</b> {{order.orderUID}} <br>
+                    <br>
+                </div>
+            </div>
+            <div *ngFor="let product of order.products">
+                <mat-card >
+                    <b> Name :</b> {{product.name}} <br>
+                    <b> Category :</b> {{product.category}} <br>
+                    <b> Unit Price :</b> &#8377; {{product.price}} <br>
+                    <b> Seller :</b> {{product.seller}} <br>
+                    <b> Quantity : </b> 1
+                </mat-card>
+                <br>
+            </div>
+            <div class="bootstrap-wrapper">
+                <div class="container" align="end" style="margin-top: 10px;">
+                    <b>Total Amount : </b>{{order.totalAmount}}
+                </div>
+            </div>
+        </mat-card>
+        <br>
+        <hr><br>
+    </div>
+</mat-card>

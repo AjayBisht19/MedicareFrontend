@@ -38,7 +38,7 @@
                 </span>
                 <br><br>
                 <div class="container-fluid" align="end"> 
-                <button mat-stroked-button color="primary">Place Order</button>
+                <button mat-stroked-button color="primary" [disabled]="totalAmount==0" (click)="placeOrder()">Place Order</button>
             </div>
             </mat-card>
             <br>

@@ -35,13 +35,11 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
-    this.flag = true
+    // this.flag = true
     this.checkUser()
   }
 
-  // clear() {
-  //   this.userForm.reset();
-  // }
+  
   async checkUser() {
     let res = await this.http.get(`http://localhost:8080/checkUsername/${this.username}`).toPromise();
 

@@ -41,7 +41,12 @@ export class AddproductComponent implements OnInit {
     console.log(this.productForm.value)
     const uploadImageData = new FormData();
     console.log("data --- ");
-
+    console.log("selected file-- ", this.selectedFile);
+if(this.selectedFile==undefined){
+  this.snack.open('Image is compulsory', 'OK', {
+    duration: 2000
+  });
+}
     console.log(this.productForm.value)
     uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
     

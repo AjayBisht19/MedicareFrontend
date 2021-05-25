@@ -36,10 +36,17 @@ export class EditproductComponent implements OnInit {
   }
  
   onUpload() {
+    if(this.selectedFile==undefined){
+      this.snack.open('Image is compulsory', 'OK', {
+        duration: 2000
+      });
+    }
     const uploadImageData = new FormData();
     uploadImageData.append('image', this.selectedFile, this.selectedFile.name); 
     this.productForm['image'] = uploadImageData;   
-    console.log("//////////// ",this.data)
+    console.log("selected file-- ", this.selectedFile);
+
+  
     this.httpClient.post(`http://localhost:8080/admin/product/${this.data.id}/editImage`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
     //  }, (data: any) => {
       console.log("response status ", data)

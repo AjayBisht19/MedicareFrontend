@@ -17,7 +17,7 @@
 
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Username</mat-label>
-                                    <input matInput type="text" required
+                                    <input matInput name="username" type="text" required
                                         formControlName="username">
                                     <mat-hint style="color: red;"
                                         *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid">
@@ -27,7 +27,7 @@
 
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Password</mat-label>
-                                    <input matInput type="password" required formControlName="password">
+                                    <input matInput name="password" type="password" required formControlName="password">
                                     <mat-hint style="color: red;"
                                         *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
                                         <p *ngIf="loginForm.get('password').errors.required"> Password is required</p>

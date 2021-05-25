@@ -1,29 +1,15 @@
 <mat-card>
     <div class="bootstrap-wrapper">
-        <div class="container-fluid text-center">
+        <div class="container-fluid">
             <hr>
-    <table>
-        <tr>
-            <td><h2>Name</h2></td>
-            <td><h2>{{user.name}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Email</h2></td>
-            <td><h2>{{user.email}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Username</h2></td>
-            <td><h2>{{user.username}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Role</h2></td>
-            <td><h2>{{user.role}}</h2></td>
-        </tr>
-        <tr>
-            <td><h2>Adress</h2></td>
-            <td><h2>{{user.address}}</h2></td>
-        </tr>
-    </table>
-    <hr>
+            <mat-card>
+                <b>Name : </b>{{user.name}} <br> <br>
+                <b>Email : </b>{{user.email}} <br> <br>
+                <b>Username : </b>{{user.username}} <br> <br>
+                <b>Role : </b>{{user.role}} <br><br>
+                <b>Address : </b>{{user.address}} <br> <br>
+            </mat-card><br>
+            <small>*You can change your address in your cart while placing order.</small>
+
     </div></div>
 </mat-card>

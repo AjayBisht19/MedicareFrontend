@@ -25,13 +25,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
+import { MatListModule } from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 
 
 import { ProfileComponent } from './common/profile/profile.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
-import { MatListModule } from '@angular/material/list';
 import { ManageComponent } from './admin/manage/manage.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { AddproductComponent } from './admin/manage/addproduct/addproduct.component';
 import { ProductComponent } from './admin/manage/product/product.component';
 import { EditproductComponent } from './admin/manage/editproduct/editproduct.component';
@@ -40,6 +44,8 @@ import { UsersidebarComponent } from './user/usersidebar/usersidebar.component';
 import { UserhomeComponent } from './user/userhome/userhome.component';
 import { CartComponent } from './user/cart/cart.component';
 import { UserproductComponent } from './user/userhome/userproduct/userproduct.component';
+import { OrdersComponent } from './user/orders/orders.component';
+
 
 
 @NgModule({
@@ -59,7 +65,8 @@ import { UserproductComponent } from './user/userhome/userproduct/userproduct.co
     UsersidebarComponent,
     UserhomeComponent,
     CartComponent,
-    UserproductComponent
+    UserproductComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +88,9 @@ import { UserproductComponent } from './user/userhome/userproduct/userproduct.co
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
