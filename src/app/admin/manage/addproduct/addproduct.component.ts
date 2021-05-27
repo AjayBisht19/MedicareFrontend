@@ -13,7 +13,7 @@ import swal from 'sweetalert2';
 export class AddproductComponent implements OnInit {
   selectedFile: File;
   message: String;
-
+  baseUrl=`http://localhost:8080`;
   productForm: FormGroup;
   constructor(private httpClient: HttpClient,private router: Router, private snack: MatSnackBar) { }
 
@@ -37,11 +37,7 @@ export class AddproductComponent implements OnInit {
 
   
   onUpload() {
-    console.log("----------------------")
-    console.log(this.productForm.value)
     const uploadImageData = new FormData();
-    console.log("data --- ");
-    console.log("selected file-- ", this.selectedFile);
 if(this.selectedFile==undefined){
   this.snack.open('Image is compulsory', 'OK', {
     duration: 2000
@@ -51,11 +47,11 @@ if(this.selectedFile==undefined){
     uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
     
     this.productForm['image'] = uploadImageData;
-    this.httpClient.post('http://localhost:8080/admin/upload/', uploadImageData,{responseType:"text"}).subscribe((data: any) => {
+    this.httpClient.post(`${this.baseUrl}/admin/upload/`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
       console.log("response status ", data.status)
       console.log("Data : ",data)
       if (data) {
-        this.httpClient.post('http://localhost:8080/admin/uploadData/', this.productForm.value).toPromise().then(data => {
+        this.httpClient.post(`${this.baseUrl}/admin/uploadData/`, this.productForm.value).toPromise().then(data => {
           console.log(data)
           swal.fire('Product added', "", 'success');
           window.location.reload();

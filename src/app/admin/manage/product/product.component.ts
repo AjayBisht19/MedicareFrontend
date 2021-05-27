@@ -16,10 +16,11 @@ export class ProductComponent implements OnInit {
   product:product
   retrieveResonse:string
   public id: any;
+  baseUrl=`http://localhost:8080`;
   ngOnInit(): void {
      this.id = this.route.snapshot.params.id;
     console.log(this.id);
-    this.http.get(`http://localhost:8080/admin/product/${this.id}`).subscribe((data:any)=>{
+    this.http.get(`${this.baseUrl}/admin/product/${this.id}`).subscribe((data:any)=>{
       this.product=data;
       this.retrieveResonse = data.image;
       this.product.image = 'data:image/jpeg;base64,' + this.retrieveResonse;

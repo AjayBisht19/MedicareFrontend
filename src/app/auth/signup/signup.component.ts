@@ -19,6 +19,15 @@ export class SignupComponent implements OnInit {
   flag: any;
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn){
+      if(this.authService.getUserRole()=="admin"){
+        this.authService.loginStatusSubject.next(true)
+        this.router.navigate(['/admin'])
+      }else{
+        this.authService.loginStatusSubject.next(true)
+        this.router.navigate(['/user'])
+      }
+    }
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [
@@ -42,14 +51,7 @@ export class SignupComponent implements OnInit {
   
   async checkUser() {
     let res = await this.http.get(`http://localhost:8080/checkUsername/${this.username}`).toPromise();
-
-
-    console.log("Res", res)
     this.flag = res;
-
-    console.log("checking flag")
-    console.log(this.flag)
-
     if (this.flag) {
       this.snack.open('Username already exist', 'OK', {
         duration: 2000

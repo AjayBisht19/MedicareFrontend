@@ -16,10 +16,12 @@ export class UserproductComponent implements OnInit {
   product:product
   retrieveResonse:string
   public id: any;
+  baseUrl=`http://localhost:8080`;
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
     console.log(this.id);
-    this.http.get(`http://localhost:8080/userProduct/${this.id}`).subscribe((data:any)=>{
+    this.http.get(`${this.baseUrl}/userProduct/${this.id}`).subscribe((data:any)=>{
       this.product=data;
       this.retrieveResonse = data.image;
       this.product.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
@@ -29,7 +31,7 @@ export class UserproductComponent implements OnInit {
   addToCart(id){
     console.log(id);
 
-    this.http.get(`http://localhost:8080/user/product/${id}/addToCart`,{responseType:'text'}).subscribe(data=>{
+    this.http.get(`${this.baseUrl}/user/product/${id}/addToCart`,{responseType:'text'}).subscribe(data=>{
       console.log(data);
       swal.fire('Item added to Cart', "", 'success');
       this.router.navigate(['/user/cart']);

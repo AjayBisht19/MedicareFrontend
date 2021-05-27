@@ -1,27 +1,143 @@
-
-<mat-toolbar color="accent"> 
-  <span><img style="margin-right: 14px;" src="../assets/images/1.png" alt=""><img src="../assets/images/2.png" alt=""></span>
+<mat-toolbar color="accent">
+  <span><img style="margin-right: 14px;" src="../assets/images/1.png" alt=""><img src="../assets/images/2.png"
+      alt=""></span>
   <span class="example-spacer"></span>
-  <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/']" routerLinkActive="router-link-active"  class="example-icon favorite-icon mr-3" aria-label="Example icon-button with heart icon">
+  <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/']" routerLinkActive="router-link-active"
+    class="example-icon favorite-icon mr-3" aria-label="Example icon-button with heart icon">
     <span>Register</span>
   </a>
-  <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/login']" class="example-icon" aria-label="Example icon-button with share icon">
+  <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/login']" class="example-icon"
+    aria-label="Example icon-button with share icon">
     <span>Login</span>
   </a>
-  <a *ngIf="isLoggedIn" mat-icon-button (click)="logout()" class="example-icon mr-3" aria-label="Example icon-button with share icon">
+  <a *ngIf="isLoggedIn" mat-icon-button (click)="logout()" class="example-icon mr-3"
+    aria-label="Example icon-button with share icon">
     <span>Log out</span>
   </a>
-  <button *ngIf="isLoggedIn && user && user.role=='admin'" routerLink="/admin" mat-icon-button class="example-icon mr-3 " aria-label="Example icon-button with share icon">
+  <button *ngIf="isLoggedIn && user && user.role=='admin'" routerLink="/admin" mat-icon-button
+    class="example-icon mr-3 " aria-label="Example icon-button with share icon">
     <span>{{user.name}}</span>
   </button>
-  <button *ngIf="isLoggedIn && user && user.role=='user'" routerLink="/user" mat-icon-button class="example-icon mr-3" aria-label="Example icon-button with share icon">
+  <button *ngIf="isLoggedIn && user && user.role=='user'" routerLink="/user" mat-icon-button class="example-icon mr-3"
+    aria-label="Example icon-button with share icon">
     <span>{{user.name}}</span>
   </button>
- 
+
+
 
 </mat-toolbar>
 
 <router-outlet></router-outlet>
 
 
+<div class="bootstrap-wrapper" style="margin-top: 20px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="bootstrap-wrapper" style="margin-top: 20px;">
+          <div class="row">
+            <div class="col-lg-6">
+              <img class="icons" src="../assets/images/shield.png" alt="">
+            </div>
+            <div class="col-lg-6">
+
+              <h1>Reliable</h1>
+              <p> All products displayed on Medicare are procured from verified and licensed pharmacies. All labs listed
+                on
+                the platform are accredited</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="bootstrap-wrapper" style="margin-top: 20px;">
+          <div class="row">
+            <div class="col-lg-6">
+              <img class="icons" src="../assets/images/wallet.png" alt="">
+            </div>
+            <div class="col-lg-6">
+              <h1>Affordable</h1>
+              <p> Find affordable medicine substitutes, save up to 50% on health products, up to 80% off on lab tests
+                and free doctor consultations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+  <div class="bootstrap-wrapper" style="margin-top: 20px;">
+    <div class="container text-center">
+      <img src="../assets/images/medicare logo-01.png" class="logo" alt=""><br>
+      <h1>India's only LegitScript and ISO/IEC 27001 certified online healthcare platform</h1>
+    </div>
+  </div>
+</div>
+
+<div class="bootstrap-wrapper jumbotron" >
+  <div class="container" style="margin-top: 20px;">
+    <div class="text-center">
+      <br>
+      <h1><a class="nodeco" routerLink="/contactUs">Contact Us</a> </h1>
+      <h1><a class="nodeco" routerLink="/aboutUs">About Us</a> </h1>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer style="color: white;">
+  <br>
  
+  <br>
+  <div class="bootstrap-wrapper" style="margin-top: 20px;">
+    <div class="row" style="margin-left: 20px; margin-bottom: 50px;">
+      <div class="col-md-2 offset-md-1">
+        <h2 class="titles">Know Us</h2>
+        <h5><a class="nodeco" routerLink="/contactUs">Contact Us</a> </h5>
+        <h5><a class="nodeco" routerLink="/aboutUs">About Us</a> </h5>
+        <h5>Press Coverage</h5>
+        <h5>Carrers</h5>
+        <h5>Business Partnership</h5>
+      </div>
+
+
+
+      <div class="col-md-2">
+        <h2 class="titles">Our Policies</h2>
+        <h5>Privacy policy</h5>
+        <h5>Editorial Policy</h5>
+        <h5>Return Policy</h5>
+        <h5>IP Policy</h5>
+      </div>
+
+      <div class="col-md-2">
+        <h2 class="titles">Our Services</h2>
+        <h5>Order Medicines</h5>
+        <h5>Consult a doctor</h5>
+        <h5>Ayurveda Articles</h5>
+      </div>
+
+      <div class="col-md-2">
+        <h2 class="titles">Connect Us</h2>
+        <i class="fab fa-2x fa-facebook-square"></i>
+        <i class="fab fa-2x fa-instagram"></i>
+        <i class="fab fa-2x fa-twitter-square"></i>
+        <i class="fab fa-2x fa-linkedin"></i>
+
+      </div>
+
+      <div class="col-md-2">
+        <h2 class="titles">Download app</h2>
+        <img class="download" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt=""><br>
+        <img class="download"
+          src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="">
+      </div>
+
+    </div>
+
+    <h3 class="text-center" style="color: wheat;">© 2021 Medicare. All rights reserved. In compliance with Drugs and
+      Cosmetics Act, 1940
+      and Drugs and Cosmetics Rules, 1945, we don't process requests for Schedule X and other habit forming drugs.
+    </h3>
+
+  </div>
+</footer>

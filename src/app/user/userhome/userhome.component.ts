@@ -21,10 +21,11 @@ export class UserhomeComponent implements OnInit {
   allProducts: boolean;
   disDate = false;
   disPrice = false;
+  baseUrl=`http://localhost:8080`;
 
   ngOnInit(): void {
     this.allProducts = true;
-    this.http.get<object[]>(`http://localhost:8080/user/products`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/user/products`).subscribe((data: any) => {
 
       this.products = [];
       data.forEach((pro: product) => {
@@ -37,7 +38,7 @@ export class UserhomeComponent implements OnInit {
       console.log("error ",error);
     })
 
-    this.http.get(`http://localhost:8080/user/products/categories`).subscribe((data: any) => {
+    this.http.get(`${this.baseUrl}/user/products/categories`).subscribe((data: any) => {
       this.categories = data;
     })
   }
@@ -51,7 +52,7 @@ export class UserhomeComponent implements OnInit {
   price() {
     this.disDate = false;
     this.disPrice = true;
-    this.http.get<object[]>(`http://localhost:8080/user/products/sortByPrice`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/user/products/sortByPrice`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -66,7 +67,7 @@ export class UserhomeComponent implements OnInit {
     this.disDate = false;
     this.disPrice = false;
     this.allProducts = false;
-    this.http.get<object[]>(`http://localhost:8080/user/products/${category}`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/user/products/${category}`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -79,7 +80,7 @@ export class UserhomeComponent implements OnInit {
 
   searchByName(){
     this.allProducts = false;
-    this.http.get(`http://localhost:8080/user/product/${this.search}`).subscribe((data: any) => {
+    this.http.get(`${this.baseUrl}/user/product/${this.search}`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro

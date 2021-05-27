@@ -1,0 +1,21 @@
+.about img{
+    width: 100%;
+height: 60vh;  
+  object-fit: cover;
+}
+.about{
+    position: relative;
+    font-family: 'Pattaya', sans-serif;
+}
+
+.content{
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: xx-large;
+}
+.text-center{
+    text-align: center;
+}

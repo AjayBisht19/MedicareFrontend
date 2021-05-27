@@ -17,14 +17,14 @@ export class ManageComponent implements OnInit {
     this.dialog.open(AddproductComponent);
   }
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router,private snack:MatSnackBar) {
+  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router, private snack: MatSnackBar) {
 
   }
-
+  baseUrl = `http://localhost:8080`;
   products: product[] = [];
   categories: [];
   main: product;
-  search:String;
+  search: String;
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
@@ -34,7 +34,7 @@ export class ManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.allProducts = true;
-    this.http.get<object[]>(`http://localhost:8080/products`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/products`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -44,7 +44,7 @@ export class ManageComponent implements OnInit {
       })
     })
 
-    this.http.get(`http://localhost:8080/products/categories`).subscribe((data: any) => {
+    this.http.get(`${this.baseUrl}/products/categories`).subscribe((data: any) => {
       this.categories = data;
     })
   }
@@ -53,7 +53,7 @@ export class ManageComponent implements OnInit {
 
   delete(id) {
     console.log(id);
-    this.http.delete(`http://localhost:8080/admin/product/${id}`,{responseType:'text'}).subscribe(data => {
+    this.http.delete(`${this.baseUrl}/admin/product/${id}`, { responseType: 'text' }).subscribe(data => {
     })
     window.location.reload();
     this.snack.open('Item deleted', 'OK', {
@@ -62,7 +62,7 @@ export class ManageComponent implements OnInit {
   }
 
   active(id) {
-    this.http.patch(`http://localhost:8080/admin/product/${id}`, null,{responseType:"text"}).subscribe(data=>{
+    this.http.patch(`${this.baseUrl}/admin/product/${id}`, null, { responseType: "text" }).subscribe(data => {
       this.snack.open('Status changed', 'OK', {
         duration: 2000
       });
@@ -78,7 +78,7 @@ export class ManageComponent implements OnInit {
   price() {
     this.disDate = false;
     this.disPrice = true;
-    this.http.get<object[]>(`http://localhost:8080/products/sortByPrice`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/products/sortByPrice`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -91,7 +91,7 @@ export class ManageComponent implements OnInit {
 
   byCategory(category) {
     this.allProducts = false;
-    this.http.get<object[]>(`http://localhost:8080/products/${category}`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/products/${category}`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -102,9 +102,9 @@ export class ManageComponent implements OnInit {
     })
   }
 
-  searchByName(){
+  searchByName() {
     this.allProducts = false;
-    this.http.get(`http://localhost:8080/product/${this.search}`).subscribe((data: any) => {
+    this.http.get(`${this.baseUrl}/product/${this.search}`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro

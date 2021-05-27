@@ -45,6 +45,8 @@ import { UserhomeComponent } from './user/userhome/userhome.component';
 import { CartComponent } from './user/cart/cart.component';
 import { UserproductComponent } from './user/userhome/userproduct/userproduct.component';
 import { OrdersComponent } from './user/orders/orders.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -66,7 +68,9 @@ import { OrdersComponent } from './user/orders/orders.component';
     UserhomeComponent,
     CartComponent,
     UserproductComponent,
-    OrdersComponent
+    OrdersComponent,
+    AboutUsComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,8 @@ export class EditproductComponent implements OnInit {
   selectedFile: File;
   message: String;
   productForm: FormGroup;
+  baseUrl=`http://localhost:8080`;
+
   constructor(private httpClient: HttpClient,private router: Router,@Inject(MAT_DIALOG_DATA) public data:any, private snack: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -35,9 +37,10 @@ export class EditproductComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
  
-  onUpload() {
+  onUpload(e:Event) {
+    e.preventDefault();
     if(this.selectedFile==undefined){
-      this.snack.open('Image is compulsory', 'OK', {
+      this.snack.open('Image is compulsory', 'Try again!', {
         duration: 2000
       });
     }
@@ -47,11 +50,10 @@ export class EditproductComponent implements OnInit {
     console.log("selected file-- ", this.selectedFile);
 
   
-    this.httpClient.post(`http://localhost:8080/admin/product/${this.data.id}/editImage`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
-    //  }, (data: any) => {
+    this.httpClient.post(`${this.baseUrl}/admin/product/${this.data.id}/editImage`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
       console.log("response status ", data)
       if (data) {
-        this.httpClient.post(`http://localhost:8080/admin/product/${this.data.id}/editData`, this.productForm.value).toPromise().then(data => {
+        this.httpClient.post(`${this.baseUrl}/admin/product/${this.data.id}/editData`, this.productForm.value).toPromise().then(data => {
           console.log("product form " ,this.productForm.value)
           swal.fire('Product updated', "", 'success');
           window.location.reload();
@@ -59,7 +61,7 @@ export class EditproductComponent implements OnInit {
 
       }
     },error=>{
-      this.snack.open('Image is compulsory', 'OK', {
+      this.snack.open('Make sure file is image', 'Try again!', {
         duration: 2000
       });
     })

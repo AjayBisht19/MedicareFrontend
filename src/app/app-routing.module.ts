@@ -1,3 +1,5 @@
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { OrdersComponent } from './user/orders/orders.component';
 import { UserproductComponent } from './user/userhome/userproduct/userproduct.component';
 import { CartComponent } from './user/cart/cart.component';
@@ -18,6 +20,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: "", component: SignupComponent, pathMatch:'full'},
   { path: "login", component: LoginComponent },
+  { path: "aboutUs", component: AboutUsComponent },
+  { path: "contactUs", component: ContactUsComponent },
+
   { path: "user", component: UserDashboardComponent,canActivate:[UserGuardGuard] ,children:[
     {path:"",component:UserhomeComponent},
     {path:"profile",component:ProfileComponent},
@@ -25,6 +30,7 @@ const routes: Routes = [
     {path:"product/:id",component:UserproductComponent},
     {path:"orders",component:OrdersComponent}
   ]},
+  
   { path: "admin", component: AdminDashboardComponent ,canActivate:[AdminGuardGuard],children:[
     {path:"" ,component:HomeComponent},
     {path:"profile" ,component:ProfileComponent},

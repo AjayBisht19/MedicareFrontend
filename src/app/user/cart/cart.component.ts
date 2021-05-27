@@ -19,7 +19,7 @@ declare var Razorpay: any;
 export class CartComponent implements OnInit {
   totalAmount: number;
   constructor(private http: HttpClient, private snack: MatSnackBar) { }
-
+  baseUrl = `http://localhost:8080`;
   address: FormGroup;
   products: product[] = [];
   main: product;
@@ -34,7 +34,7 @@ export class CartComponent implements OnInit {
       add: new FormControl('', Validators.required)
     });
 
-    this.http.get<object[]>(`http://localhost:8080/user/getCart`).subscribe((data: any) => {
+    this.http.get<object[]>(`${this.baseUrl}/user/getCart`).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -47,7 +47,7 @@ export class CartComponent implements OnInit {
       console.log("error ", error);
     })
 
-    this.http.get(`http://localhost:8080/user/cartAmount`).subscribe((data: any) => {
+    this.http.get(`${this.baseUrl}/user/cartAmount`).subscribe((data: any) => {
       this.totalAmount = data
     })
 
@@ -55,7 +55,7 @@ export class CartComponent implements OnInit {
 
   changeAddress() {
     if (this.address.value['add']) {
-      this.http.post(`http://localhost:8080/user/changeAddress`, this.address.value['add']).subscribe((data: any) => {
+      this.http.post(`${this.baseUrl}/user/changeAddress`, this.address.value['add']).subscribe((data: any) => {
         console.log(data)
         localStorage.removeItem("user")
         localStorage.setItem("user", JSON.stringify(data))
@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
   remove(id) {
     console.log(id)
 
-    this.http.delete(`http://localhost:8080/user/product/${id}/removeFromCart`, { responseType: "text" }).subscribe(data => {
+    this.http.delete(`${this.baseUrl}/user/product/${id}/removeFromCart`, { responseType: "text" }).subscribe(data => {
       console.log(data)
       window.location.reload();
       this.snack.open('Item removed', 'OK', {
@@ -79,8 +79,8 @@ export class CartComponent implements OnInit {
     })
   }
 
-  orderSummary(id){
-    this.http.get(`http://localhost:8080/user/createOrderSummary/${id}`,{responseType:'text'}).subscribe((data: any) => {
+  orderSummary(id) {
+    this.http.get(`${this.baseUrl}/user/createOrderSummary/${id}`, { responseType: 'text' }).subscribe((data: any) => {
       console.log("sent order request")
       console.log(data)
 
@@ -89,13 +89,13 @@ export class CartComponent implements OnInit {
 
   placeOrder() {
     console.log("Place order");
-    this.http.get(`http://localhost:8080/user/createOrder`).subscribe((data: any) => {
+    this.http.get(`${this.baseUrl}/user/createOrder`).subscribe((data: any) => {
       console.log("success ", data)
-      
+
       console.log(data.status)
       if (data.status == "created") {
 
-        
+
         let options = {
           key: 'rzp_test_YRVcjR7aOtyudM',
           amount: data.amount,
@@ -104,15 +104,15 @@ export class CartComponent implements OnInit {
           description: 'Order payment',
           image: '',
           order_id: data.id,
-          "handler":  (response)=> {
+          "handler": (response) => {
             console.log(response.razorpay_payment_id);
             console.log(response.razorpay_order_id);
-            console.log(response.razorpay_signature); 
-            
+            console.log(response.razorpay_signature);
+
             console.log("sending order request")
             this.orderSummary(data.id);
             window.location.reload();
-            swal.fire('Payment successful!', "Order details are sent to your mail", 'success');
+            swal.fire('Payment successful!', "Check your order summary", 'success');
           },
           "prefill": {
             "name": "",
@@ -141,10 +141,10 @@ export class CartComponent implements OnInit {
         });
 
         rzp.open();
-      
-        
+
+
       }
-     
+
 
     }, error => {
       console.log("Error ", error.message)
