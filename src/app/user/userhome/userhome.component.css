@@ -15,8 +15,12 @@
   justify-content: center !important;
 }
 
-  
-  
+  #carouselExampleIndicators{
+    height: 50vh;
+  }
+  #carouselExampleIndicators img{
+    height: 50vh;
+  }
 
   .mat-card img{
     height:250px;

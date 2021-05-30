@@ -23,13 +23,11 @@
     <span>{{user.name}}</span>
   </button>
 
-
-
 </mat-toolbar>
 
 <router-outlet></router-outlet>
 
-
+<div *ngIf="isLoggedIn">
 <div class="bootstrap-wrapper" style="margin-top: 20px;">
   <div class="container">
     <div class="row">
@@ -73,7 +71,7 @@
   </div>
 </div>
 
-<div class="bootstrap-wrapper jumbotron" >
+<div class="bootstrap-wrapper jumbotron">
   <div class="container" style="margin-top: 20px;">
     <div class="text-center">
       <br>
@@ -85,7 +83,7 @@
 <!-- Footer -->
 <footer style="color: white;">
   <br>
- 
+
   <br>
   <div class="bootstrap-wrapper" style="margin-top: 20px;">
     <div class="row" style="margin-left: 20px; margin-bottom: 50px;">
@@ -141,3 +139,4 @@
 
   </div>
 </footer>
+</div>

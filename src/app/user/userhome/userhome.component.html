@@ -1,3 +1,30 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a routerLink="/aboutUs">
+      <img src="../../../assets/images/it2pb6w2psqs0mi6emub.png" class="d-block w-100" alt="..."></a>
+    </div>
+    <div class="carousel-item">
+      <a routerLink="/aboutUs">
+      <img src="../../../assets/images/q94c062ubrtjtuokb8kl.png" class="d-block w-100" alt="..."></a>
+    </div>
+   
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
 <mat-card>
    <br>
     <button mat-raised-button color="primary" [(disabled)]="disDate" style="margin-right: 10px;" (click)="date()">
@@ -8,7 +35,7 @@
     </button><br><br>
     Filter by : <br>
     <span *ngFor="let category of categories" style="margin-top: 10px;">
-      <button mat-raised-button color="accent" style="margin-right: 10px;"
+      <button mat-raised-button color="accent" style="margin-right: 10px; margin-bottom: 10px;"
         (click)="byCategory(category)">{{category}}</button>
     </span>
     <br>

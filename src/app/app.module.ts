@@ -29,8 +29,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { ProfileComponent } from './common/profile/profile.component';
@@ -94,7 +93,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     MatTableModule,
     MatBadgeModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

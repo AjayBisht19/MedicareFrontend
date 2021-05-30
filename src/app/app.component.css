@@ -22,9 +22,7 @@
       color:white;
   }
   mat-toolbar img{
-      
     height: 25px;
-    margin-top: 10px;
   }
 .icons{
     width: 35%;
@@ -63,7 +61,7 @@ footer{
     margin-left: 10px;
 }
 .fa-facebook-square{
-    color: #4267B2
+    color: #3b5998
     ;
 }
 .fa-twitter-square{
