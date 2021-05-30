@@ -19,7 +19,8 @@ export class SignupComponent implements OnInit {
   flag: any;
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn){
+    console.log("signup")
+    if(this.authService.isLoggedIn()){
       if(this.authService.getUserRole()=="admin"){
         this.authService.loginStatusSubject.next(true)
         this.router.navigate(['/admin'])
@@ -57,7 +58,8 @@ export class SignupComponent implements OnInit {
         duration: 2000
       });
     } else {
-      console.log(this.authService.signup(this.userForm.value));
+      
+      console.log("jkasdhf",this.authService.signup(this.userForm.value));
       swal.fire('Successfully Registered', "", 'success');
       this.router.navigate(['/login']);
     }

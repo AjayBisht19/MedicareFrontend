@@ -58,7 +58,7 @@
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Username</mat-label>
                                     <input matInput name="username" [(ngModel)]="username" type="text" required
-                                        formControlName="username">
+                                        formControlName="username" style="text-transform:lowercase">
                                     <mat-hint align="end" >Username must be unique </mat-hint>
                                     <mat-hint style="color: red;"
                                         *ngIf="userForm.get('username').touched && userForm.get('username').invalid">

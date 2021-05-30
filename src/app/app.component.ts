@@ -25,6 +25,8 @@ export class AppComponent {
     this.role=this.login.getUserRole;
   }
   title = 'Medicare';
+
+
   logout(){
     this.login.logout();
     // window.location.reload()

@@ -18,7 +18,7 @@
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Username</mat-label>
                                     <input matInput name="username" type="text" required
-                                        formControlName="username">
+                                        formControlName="username" style="text-transform:lowercase">
                                     <mat-hint style="color: red;"
                                         *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid">
                                         <p *ngIf="loginForm.get('username').errors.required"> Username is required</p>
