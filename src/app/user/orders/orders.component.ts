@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  baseUrl=`http://localhost:8080`;
-  constructor(private http: HttpClient) { }
+  constructor(private userService:UserService) { }
 
   orders:object[];
 
   ngOnInit(): void {
-    this.http.get(`${this.baseUrl}/user/getOrderProducts`).subscribe((data:any)=>{
+    this.userService.orderedProducts().subscribe((data:any)=>{
       console.log(data);
       this.orders=data
     })

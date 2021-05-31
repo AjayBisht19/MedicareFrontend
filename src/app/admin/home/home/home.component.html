@@ -1,8 +1,49 @@
 <mat-card>
     <div class="bootstrap-wrapper">
-        <div class="container-fluid text-center">
+        <div class="container-fluid ">
             <h1>Welcome Administrator!</h1>
-            <img src="../../../../assets/images/3947703.jpg" alt="">
+            <!-- <img src="../../../../assets/images/3947703.jpg" alt=""> -->
+            <br>
+            <button mat-raised-button color="primary" routerLink="/admin/manage"> manage products</button>
+            <br>
+            <br>
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput [(ngModel)]="searchKey" class="float-end" (keyup)="applyFilter($event)" >
+              </mat-form-field><br><br>
+            <table mat-table [dataSource]="listData" class="mat-elevation-z8" matSort>
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="unit price">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                </ng-container>
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+               
+            </table>
+            <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+
         </div>
     </div>
 

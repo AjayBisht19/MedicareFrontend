@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { product } from 'src/app/admin/manage/product';
 
@@ -9,7 +9,7 @@ import { product } from 'src/app/admin/manage/product';
 })
 export class UserhomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private userService:UserService) { }
 
   products: product[] = [];
   categories: [];
@@ -21,12 +21,10 @@ export class UserhomeComponent implements OnInit {
   allProducts: boolean;
   disDate = false;
   disPrice = false;
-  baseUrl=`http://localhost:8080`;
 
   ngOnInit(): void {
     this.allProducts = true;
-    this.http.get<object[]>(`${this.baseUrl}/user/products`).subscribe((data: any) => {
-
+    this.userService.getProducts().subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -38,7 +36,7 @@ export class UserhomeComponent implements OnInit {
       console.log("error ",error);
     })
 
-    this.http.get(`${this.baseUrl}/user/products/categories`).subscribe((data: any) => {
+    this.userService.getCategories().subscribe((data: any) => {
       this.categories = data;
     })
   }
@@ -52,7 +50,7 @@ export class UserhomeComponent implements OnInit {
   price() {
     this.disDate = false;
     this.disPrice = true;
-    this.http.get<object[]>(`${this.baseUrl}/user/products/sortByPrice`).subscribe((data: any) => {
+    this.userService.sortByPrice().subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -67,7 +65,7 @@ export class UserhomeComponent implements OnInit {
     this.disDate = false;
     this.disPrice = false;
     this.allProducts = false;
-    this.http.get<object[]>(`${this.baseUrl}/user/products/${category}`).subscribe((data: any) => {
+    this.userService.productByCategory(category).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -80,7 +78,7 @@ export class UserhomeComponent implements OnInit {
 
   searchByName(){
     this.allProducts = false;
-    this.http.get(`${this.baseUrl}/user/product/${this.search}`).subscribe((data: any) => {
+    this.userService.searchByName(this.search).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro

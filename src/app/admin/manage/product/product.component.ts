@@ -1,6 +1,6 @@
+import { AdminService } from './../../../services/admin.service';
 import { EditproductComponent } from './../editproduct/editproduct.component';
 import { MatDialog } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
 import { product } from './../product';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,15 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private http:HttpClient, private dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute,private adminService:AdminService, private dialog: MatDialog) { }
   product:product
   retrieveResonse:string
   public id: any;
-  baseUrl=`http://localhost:8080`;
   ngOnInit(): void {
      this.id = this.route.snapshot.params.id;
     console.log(this.id);
-    this.http.get(`${this.baseUrl}/admin/product/${this.id}`).subscribe((data:any)=>{
+    this.adminService.getProduct(this.id).subscribe((data:any)=>{
       this.product=data;
       this.retrieveResonse = data.image;
       this.product.image = 'data:image/jpeg;base64,' + this.retrieveResonse;

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { AdminService } from './../../../services/admin.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,9 +13,8 @@ import swal from 'sweetalert2';
 export class AddproductComponent implements OnInit {
   selectedFile: File;
   message: String;
-  baseUrl=`http://localhost:8080`;
   productForm: FormGroup;
-  constructor(private httpClient: HttpClient,private router: Router, private snack: MatSnackBar) { }
+  constructor(private router: Router,private adminService:AdminService, private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
@@ -47,11 +46,11 @@ if(this.selectedFile==undefined){
     uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
     
     this.productForm['image'] = uploadImageData;
-    this.httpClient.post(`${this.baseUrl}/admin/upload/`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
+    this.adminService.postImage(uploadImageData).subscribe((data: any) => {
       console.log("response status ", data.status)
       console.log("Data : ",data)
       if (data) {
-        this.httpClient.post(`${this.baseUrl}/admin/uploadData/`, this.productForm.value).toPromise().then(data => {
+        this.adminService.postData(this.productForm.value).toPromise().then(data => {
           console.log(data)
           swal.fire('Product added', "", 'success');
           window.location.reload();

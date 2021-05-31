@@ -1,7 +1,6 @@
-import { product } from './../product';
+import { AdminService } from './../../../services/admin.service';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,9 +16,8 @@ export class EditproductComponent implements OnInit {
   selectedFile: File;
   message: String;
   productForm: FormGroup;
-  baseUrl=`http://localhost:8080`;
 
-  constructor(private httpClient: HttpClient,private router: Router,@Inject(MAT_DIALOG_DATA) public data:any, private snack: MatSnackBar) { }
+  constructor(private router: Router,@Inject(MAT_DIALOG_DATA) public data:any, private snack: MatSnackBar,private adminService:AdminService) { }
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
@@ -50,10 +48,10 @@ export class EditproductComponent implements OnInit {
     console.log("selected file-- ", this.selectedFile);
 
   
-    this.httpClient.post(`${this.baseUrl}/admin/product/${this.data.id}/editImage`, uploadImageData,{responseType:"text"}).subscribe((data: any) => {
+    this.adminService.updateImage(this.data.id,uploadImageData).subscribe((data: any) => {
       console.log("response status ", data)
       if (data) {
-        this.httpClient.post(`${this.baseUrl}/admin/product/${this.data.id}/editData`, this.productForm.value).toPromise().then(data => {
+        this.adminService.updateData(this.data.id, this.productForm.value).toPromise().then(data => {
           console.log("product form " ,this.productForm.value)
           swal.fire('Product updated', "", 'success');
           window.location.reload();

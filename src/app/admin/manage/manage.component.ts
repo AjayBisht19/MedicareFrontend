@@ -1,6 +1,6 @@
+import { AdminService } from './../../services/admin.service';
 import { Router } from '@angular/router';
 import { product } from './product';
-import { HttpClient } from '@angular/common/http';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,10 +17,9 @@ export class ManageComponent implements OnInit {
     this.dialog.open(AddproductComponent);
   }
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router, private snack: MatSnackBar) {
+  constructor(private dialog: MatDialog,private adminService:AdminService, private router: Router, private snack: MatSnackBar) {
 
   }
-  baseUrl = `http://localhost:8080`;
   products: product[] = [];
   categories: [];
   main: product;
@@ -34,7 +33,7 @@ export class ManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.allProducts = true;
-    this.http.get<object[]>(`${this.baseUrl}/products`).subscribe((data: any) => {
+    this.adminService.getProducts().subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -44,7 +43,7 @@ export class ManageComponent implements OnInit {
       })
     })
 
-    this.http.get(`${this.baseUrl}/products/categories`).subscribe((data: any) => {
+    this.adminService.getCategories().subscribe((data: any) => {
       this.categories = data;
     })
   }
@@ -53,7 +52,7 @@ export class ManageComponent implements OnInit {
 
   delete(id) {
     console.log(id);
-    this.http.delete(`${this.baseUrl}/admin/product/${id}`, { responseType: 'text' }).subscribe(data => {
+    this.adminService.deleteProduct(id).subscribe(data => {
     })
     window.location.reload();
     this.snack.open('Item deleted', 'OK', {
@@ -62,7 +61,7 @@ export class ManageComponent implements OnInit {
   }
 
   active(id) {
-    this.http.patch(`${this.baseUrl}/admin/product/${id}`, null, { responseType: "text" }).subscribe(data => {
+    this.adminService.toggleActivate(id).subscribe(data => {
       this.snack.open('Status changed', 'OK', {
         duration: 2000
       });
@@ -78,7 +77,7 @@ export class ManageComponent implements OnInit {
   price() {
     this.disDate = false;
     this.disPrice = true;
-    this.http.get<object[]>(`${this.baseUrl}/products/sortByPrice`).subscribe((data: any) => {
+    this.adminService.sortByPrice().subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -91,7 +90,7 @@ export class ManageComponent implements OnInit {
 
   byCategory(category) {
     this.allProducts = false;
-    this.http.get<object[]>(`${this.baseUrl}/products/${category}`).subscribe((data: any) => {
+    this.adminService.listByCategory(category).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -104,7 +103,7 @@ export class ManageComponent implements OnInit {
 
   searchByName() {
     this.allProducts = false;
-    this.http.get(`${this.baseUrl}/product/${this.search}`).subscribe((data: any) => {
+    this.adminService.searchByProductName(this.search).subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro

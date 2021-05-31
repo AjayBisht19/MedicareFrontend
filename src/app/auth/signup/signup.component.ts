@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
@@ -14,12 +13,11 @@ import swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
 
   userForm: FormGroup;
-  constructor(private http: HttpClient, private authService: AuthServiceService, private router: Router, private snack: MatSnackBar) { }
+  constructor( private authService: AuthServiceService, private router: Router, private snack: MatSnackBar) { }
   username: any;
   flag: any;
 
   ngOnInit(): void {
-    console.log("signup")
     if(this.authService.isLoggedIn()){
       if(this.authService.getUserRole()=="admin"){
         this.authService.loginStatusSubject.next(true)
@@ -51,15 +49,14 @@ export class SignupComponent implements OnInit {
 
   
   async checkUser() {
-    let res = await this.http.get(`http://localhost:8080/checkUsername/${this.username}`).toPromise();
+    let res = await this.authService.checkUsername(this.username).toPromise();
     this.flag = res;
     if (this.flag) {
       this.snack.open('Username already exist', 'OK', {
         duration: 2000
       });
-    } else {
-      
-      console.log("jkasdhf",this.authService.signup(this.userForm.value));
+    } else {      
+      console.log(this.authService.signup(this.userForm.value));
       swal.fire('Successfully Registered', "", 'success');
       this.router.navigate(['/login']);
     }

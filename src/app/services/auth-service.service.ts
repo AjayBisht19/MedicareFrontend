@@ -11,6 +11,10 @@ export class AuthServiceService {
  
  baseURL="http://localhost:8080";
 
+ checkUsername(username){
+   return this.http.get(`${this.baseURL}/checkUsername/${username}`);
+ }
+
  getCurrentUser(){  
    console.log(this.http.get(`${this.baseURL}/currentUser`))
    return this.http.get(`${this.baseURL}/currentUser`);

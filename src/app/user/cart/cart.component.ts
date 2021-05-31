@@ -1,10 +1,8 @@
-import { logging } from 'protractor';
-import { HttpHandler } from '@angular/common/http';
+import { UserService } from './../../services/user.service';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { product } from 'src/app/admin/manage/product';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,8 +16,8 @@ declare var Razorpay: any;
 })
 export class CartComponent implements OnInit {
   totalAmount: number;
-  constructor(private http: HttpClient, private snack: MatSnackBar) { }
-  baseUrl = `http://localhost:8080`;
+  constructor(private userService:UserService, private snack: MatSnackBar) { }
+  
   address: FormGroup;
   products: product[] = [];
   main: product;
@@ -34,7 +32,7 @@ export class CartComponent implements OnInit {
       add: new FormControl('', Validators.required)
     });
 
-    this.http.get<object[]>(`${this.baseUrl}/user/getCart`).subscribe((data: any) => {
+    this.userService.getCartProducts().subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
@@ -47,7 +45,7 @@ export class CartComponent implements OnInit {
       console.log("error ", error);
     })
 
-    this.http.get(`${this.baseUrl}/user/cartAmount`).subscribe((data: any) => {
+    this.userService.getCartAmount().subscribe((data: any) => {
       this.totalAmount = data
     })
 
@@ -55,7 +53,7 @@ export class CartComponent implements OnInit {
 
   changeAddress() {
     if (this.address.value['add']) {
-      this.http.post(`${this.baseUrl}/user/changeAddress`, this.address.value['add']).subscribe((data: any) => {
+      this.userService.updateAddress( this.address.value['add']).subscribe((data: any) => {
         console.log(data)
         localStorage.removeItem("user")
         localStorage.setItem("user", JSON.stringify(data))
@@ -70,7 +68,7 @@ export class CartComponent implements OnInit {
   remove(id) {
     console.log(id)
 
-    this.http.delete(`${this.baseUrl}/user/product/${id}/removeFromCart`, { responseType: "text" }).subscribe(data => {
+    this.userService.removeFromCart(id).subscribe(data => {
       console.log(data)
       window.location.reload();
       this.snack.open('Item removed', 'OK', {
@@ -80,7 +78,7 @@ export class CartComponent implements OnInit {
   }
 
   orderSummary(id) {
-    this.http.get(`${this.baseUrl}/user/createOrderSummary/${id}`, { responseType: 'text' }).subscribe((data: any) => {
+    this.userService.createOrderSummary(id).subscribe((data: any) => {
       console.log("sent order request")
       console.log(data)
 
@@ -89,7 +87,7 @@ export class CartComponent implements OnInit {
 
   placeOrder() {
     console.log("Place order");
-    this.http.get(`${this.baseUrl}/user/createOrder`).subscribe((data: any) => {
+    this.userService.createOrder().subscribe((data: any) => {
       console.log("success ", data)
 
       console.log(data.status)
