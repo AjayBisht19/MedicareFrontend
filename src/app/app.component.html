@@ -3,15 +3,15 @@
       alt=""></span>
 
   <span class="example-spacer"></span>
-  <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/']" routerLinkActive="router-link-active"
+  <a *ngIf="!isLoggedIn" id="register" mat-icon-button [routerLink]="['/']" routerLinkActive="router-link-active"
     class="example-icon favorite-icon mr-3" aria-label="Example icon-button with heart icon">
     <span>Register</span>
   </a>
-  <a *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/login']" class="example-icon"
+  <a *ngIf="!isLoggedIn" id="login" mat-icon-button [routerLink]="['/login']" class="example-icon"
     aria-label="Example icon-button with share icon">
     <span>Login</span>
   </a>
-  <a *ngIf="isLoggedIn" mat-icon-button (click)="logout()" class="example-icon mr-3"
+  <a *ngIf="isLoggedIn" id="logout" mat-icon-button (click)="logout()" class="example-icon mr-3"
     aria-label="Example icon-button with share icon">
     <span>Log out</span>
   </a>
@@ -38,7 +38,7 @@
             <div class="col-lg-6">
               <img class="icons" src="../assets/images/shield.png" alt="">
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" style="color: white;">
 
               <h1>Reliable</h1>
               <p> All products displayed on Medicare are procured from verified and licensed pharmacies. All labs listed
@@ -54,7 +54,7 @@
             <div class="col-lg-6">
               <img class="icons" src="../assets/images/wallet.png" alt="">
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" style="color: white;">
               <h1>Affordable</h1>
               <p> Find affordable medicine substitutes, save up to 50% on health products, up to 80% off on lab tests
                 and free doctor consultations.</p>
@@ -65,7 +65,7 @@
     </div>
   </div><br><br>
   <div class="bootstrap-wrapper" style="margin-top: 20px;">
-    <div class="container text-center">
+    <div class="container text-center" style="color: white;">
       <img src="../assets/images/medicare logo-01.png" class="logo" alt=""><br>
       <h1>India's only LegitScript and ISO/IEC 27001 certified online healthcare platform</h1>
     </div>

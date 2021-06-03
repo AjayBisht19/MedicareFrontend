@@ -1,7 +1,7 @@
 <form [formGroup]="productForm" (ngSubmit)="onUpload($event)">
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Updated name</mat-label>
-        <input matInput name="productName" type="text" required formControlName="name">
+        <input matInput  name="productName" type="text" required formControlName="name">
         <mat-hint style="color: red;" *ngIf="productForm.get('name').touched && productForm.get('name').invalid">
             <p *ngIf="productForm.get('name').errors.required"> Name is required</p>
         </mat-hint>

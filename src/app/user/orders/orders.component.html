@@ -1,10 +1,11 @@
 <mat-card >
-    <h1>Your Orders</h1>
+    <h1 name="orders">Your Orders</h1>
     <small>*Your orders will be delivered 1-2 days after your address confirmation.</small>
     <hr>
     <br>
     <div *ngFor=" let order of orders">
         <mat-card class="order">
+
             <div class="bootstrap-wrapper">
                 <div class="container" align="end" style="margin-top: 10px;">
                     <b> Order Date :</b> {{order.date}} <br>

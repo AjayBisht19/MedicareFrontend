@@ -23,13 +23,13 @@ export class UserhomeComponent implements OnInit {
   disPrice = false;
 
   ngOnInit(): void {
-    this.allProducts = true;
     this.userService.getProducts().subscribe((data: any) => {
       this.products = [];
       data.forEach((pro: product) => {
         this.main = pro
         this.retrieveResonse = pro.image;
         this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
+        this.main.visibilty=true
         this.products.push(this.main);
       })
     },error=>{
@@ -39,6 +39,18 @@ export class UserhomeComponent implements OnInit {
     this.userService.getCategories().subscribe((data: any) => {
       this.categories = data;
     })
+  }
+
+  searchBy(){
+    this.products.forEach(element => {
+      if(element.name.toUpperCase().indexOf(this.search.toUpperCase())>-1){
+        console.log(element.name) 
+        element.visibilty=true       
+      }else{
+        element.visibilty=false
+      }
+      
+    });
   }
 
   date() {
@@ -56,37 +68,35 @@ export class UserhomeComponent implements OnInit {
         this.main = pro
         this.retrieveResonse = pro.image;
         this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
+        this.main.visibilty=true
         this.products.push(this.main);
       })
     })
+  }
+
+  
+  showAll(){
+    this.allProducts = true;
+    this.products.forEach(element => {
+      element.visibilty=true
+    });
   }
 
   byCategory(category) {
     this.disDate = false;
     this.disPrice = false;
     this.allProducts = false;
-    this.userService.productByCategory(category).subscribe((data: any) => {
-      this.products = [];
-      data.forEach((pro: product) => {
-        this.main = pro
-        this.retrieveResonse = pro.image;
-        this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
-        this.products.push(this.main);
-      })
-    })
+    this.products.forEach(element => {
+      if(element.category===category){
+        console.log(element.name) 
+        element.visibilty=true       
+      }else{
+        element.visibilty=false
+      }
+      
+    });
   }
 
-  searchByName(){
-    this.allProducts = false;
-    this.userService.searchByName(this.search).subscribe((data: any) => {
-      this.products = [];
-      data.forEach((pro: product) => {
-        this.main = pro
-        this.retrieveResonse = pro.image;
-        this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
-        this.products.push(this.main);
-      })
-    })
-  }
+
 
 }

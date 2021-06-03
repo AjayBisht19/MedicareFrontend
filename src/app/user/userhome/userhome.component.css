@@ -1,6 +1,6 @@
 .example-card {
     max-width: 300px;
-    background-color: cornsilk;
+    background-color: #b8e994;
   }
  .example-full-width{
    width:25%;
@@ -18,9 +18,12 @@
   #carouselExampleIndicators{
     height: 50vh;
   }
+  
   #carouselExampleIndicators img{
     height: 50vh;
   }
+
+
 
   .mat-card img{
     height:250px;

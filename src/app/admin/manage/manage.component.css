@@ -1,6 +1,6 @@
 .example-card {
     max-width: 300px;
-    background-color:cornsilk;
+    background-color:#b8e994;
   }
  .example-full-width{
    width:25%;
@@ -20,16 +20,13 @@
 }
 #carouselExampleIndicators img{
   height: 50vh;
+}  
+
+.mat-card img{
+  height:250px;
+  width: 100%;
+  object-fit:cover;
 }
-
-  
-  
-
-  .mat-card img{
-    height:250px;
-    width: 100%;
-    object-fit:cover;
-  }
 
   .editIcon{
     margin-right: 20px;

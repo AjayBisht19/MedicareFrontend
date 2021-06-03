@@ -28,7 +28,10 @@ export class EditproductComponent implements OnInit {
       descr: new FormControl(''),
       seller: new FormControl(''),
     });
+
+  
   }
+
 
   public onFileChanged(event) {
     console.log("change file")
@@ -48,10 +51,10 @@ export class EditproductComponent implements OnInit {
     console.log("selected file-- ", this.selectedFile);
 
   
-    this.adminService.updateImage(this.data.id,uploadImageData).subscribe((data: any) => {
+    this.adminService.updateImage(this.data.product.id,uploadImageData).subscribe((data: any) => {
       console.log("response status ", data)
       if (data) {
-        this.adminService.updateData(this.data.id, this.productForm.value).toPromise().then(data => {
+        this.adminService.updateData(this.data.product.id, this.productForm.value).toPromise().then(data => {
           console.log("product form " ,this.productForm.value)
           swal.fire('Product updated', "", 'success');
           window.location.reload();

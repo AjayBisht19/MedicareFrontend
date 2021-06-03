@@ -30,13 +30,7 @@ export class AdminService {
   sortByPrice(){
     return this.http.get<object[]>(`${this.baseUrl}/products/sortByPrice`);
   }
-  listByCategory(category){
-    return this.http.get<object[]>(`${this.baseUrl}/products/sortByPrice`);
-  }
 
-  searchByProductName(search){
-    return this.http.get(`${this.baseUrl}/product/${search}`);
-  }
 
   getProduct(id){
     return this.http.get(`${this.baseUrl}/admin/product/${id}`);

@@ -43,7 +43,6 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
-    // this.flag = true
     this.checkUser()
   }
 

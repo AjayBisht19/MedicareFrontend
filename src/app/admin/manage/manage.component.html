@@ -24,7 +24,7 @@
   </button>
 </div>
 <br><br>
-<mat-card  style="margin-top: 20px;">
+<mat-card  style="margin-top: 15px;">
   <mat-action-list>
     <button mat-list-item (click)="openDialog()">
       <mat-icon mat-list-icon>add</mat-icon> Add product
@@ -34,7 +34,7 @@
   <button mat-raised-button color="primary" [(disabled)]="disDate" style="margin-right: 10px;" (click)="date()">
     Sort by Date
   </button>
-  <button mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()">
+  <button name="sortByPrice" mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()">
     Sort by Unit price
   </button><br><br>
   Filter by : <br>
@@ -43,7 +43,7 @@
       (click)="byCategory(category)">{{category}}</button>
   </span>
   <br>
-  <button mat-raised-button color="warn" style="margin-top: 10px;" (click)="ngOnInit()" [(disabled)]="allProducts">
+  <button mat-raised-button color="warn" style="margin-top: 10px;" (click)="showAll()" [(disabled)]="allProducts">
     All Products
   </button>
 
@@ -52,9 +52,8 @@
       <div align="end">
         <mat-form-field class="example-full-width" style="margin-right: 20px;">
           <mat-label>Search by product name</mat-label>
-          <input matInput [(ngModel)]="search">
+          <input matInput [(ngModel)]="search" (keyup)="searchBy()">
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="searchByName()">Search</button>
       </div>
     </div>
   </div>
@@ -62,7 +61,7 @@
 
   <div class="d-flex flex-wrap justify-content-center">
     <div *ngFor="let product of products">
-      <mat-card class="example-card" style="margin: 10px;">
+      <mat-card [hidden]="!product.visibilty" class="example-card" style="margin: 10px;">
         <mat-card-header>
           <mat-card-title>{{product.name}}</mat-card-title>
         </mat-card-header>

@@ -8,4 +8,5 @@ export class product{
     seller:String;
     descr:string;
     active:boolean;
+    visibilty:boolean=true;
 }
