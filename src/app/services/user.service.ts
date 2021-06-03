@@ -18,10 +18,7 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/user/products/categories`);
   }
 
-  sortByPrice(){
-    return this.http.get<object[]>(`${this.baseUrl}/user/products/sortByPrice`);
-  }
- 
+
 
   getProduct(id){
     return this.http.get(`${this.baseUrl}/userProduct/${id}`)

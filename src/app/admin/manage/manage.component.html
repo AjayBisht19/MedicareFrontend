@@ -32,11 +32,16 @@
   </mat-action-list>
   <br><br>
   <button mat-raised-button color="primary" [(disabled)]="disDate" style="margin-right: 10px;" (click)="date()">
-    Sort by Date
+    Sort by Date (default)
   </button>
-  <button name="sortByPrice" mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()">
+  <button name="sortByPrice" mat-raised-button color="primary" style="margin-right: 10px;" [(disabled)]="disPrice" (click)="price()">
     Sort by Unit price
-  </button><br><br>
+  </button>
+  <button  mat-raised-button color="primary" style="margin-right: 10px;" [(disabled)]="disName" (click)="name()">
+    Sort by Name
+  </button>
+  
+  <br><br>
   Filter by : <br>
   <span *ngFor="let category of categories" style="margin-top: 10px;">
     <button mat-raised-button color="accent" style="margin-right: 10px; margin-bottom: 10px;"

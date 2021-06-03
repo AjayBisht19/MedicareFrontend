@@ -27,10 +27,6 @@ export class AdminService {
     return this.http.patch(`${this.baseUrl}/admin/product/${id}`, null, { responseType: "text" });
   }
 
-  sortByPrice(){
-    return this.http.get<object[]>(`${this.baseUrl}/products/sortByPrice`);
-  }
-
 
   getProduct(id){
     return this.http.get(`${this.baseUrl}/admin/product/${id}`);
