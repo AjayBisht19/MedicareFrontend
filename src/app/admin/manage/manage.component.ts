@@ -31,6 +31,9 @@ export class ManageComponent implements OnInit {
   disDate = true;
   disPrice = false;
   disName=false
+  loading:boolean=true;
+        
+
 
   ngOnInit(): void {
     
@@ -43,6 +46,13 @@ export class ManageComponent implements OnInit {
         this.main.visibilty=true
         this.products.push(this.main);
       })
+      this.loading=false
+    }, error => {
+      console.log("error ", error);
+      this.snack.open('Something went wrong!!' ,'OK', {
+        duration: 2000
+      })
+
     })
 
     this.adminService.getCategories().subscribe((data: any) => {

@@ -37,7 +37,7 @@
   <button name="sortByPrice" mat-raised-button color="primary" style="margin-right: 10px;" [(disabled)]="disPrice" (click)="price()">
     Sort by Unit price
   </button>
-  <button  mat-raised-button color="primary" style="margin-right: 10px;" [(disabled)]="disName" (click)="name()">
+  <button  mat-raised-button color="primary" style="margin-top: 10px;" [(disabled)]="disName" (click)="name()">
     Sort by Name
   </button>
   
@@ -51,7 +51,6 @@
   <button mat-raised-button color="warn" style="margin-top: 10px;" (click)="showAll()" [(disabled)]="allProducts">
     All Products
   </button>
-
   <div class="bootstrap-wrapper" style="margin-top: 20px;">
     <div class="container-fluid">
       <div align="end">
@@ -63,6 +62,7 @@
     </div>
   </div>
   <!-- products view -->
+  <mat-progress-bar [hidden]="!loading" mode="indeterminate" color="accent"></mat-progress-bar>  
 
   <div class="d-flex flex-wrap justify-content-center">
     <div *ngFor="let product of products">

@@ -33,7 +33,7 @@
     <button mat-raised-button color="primary" [(disabled)]="disPrice" (click)="price()" style="margin-right: 10px;">
       Sort by Unit price
     </button>
-    <button mat-raised-button color="primary" [(disabled)]="disName" (click)="name()">
+    <button mat-raised-button color="primary" [(disabled)]="disName" (click)="name()" style="margin-top: 10px;">
       Sort by Name
     </button>
     <br><br>
@@ -58,8 +58,11 @@
       </div>
     </div>
     <!-- products view -->
+    <mat-progress-bar [hidden]="!loading" mode="indeterminate" color="accent"></mat-progress-bar>  
+
   
     <div class="d-flex flex-wrap justify-content-center">
+      <br>
       <div *ngFor="let product of products">
         <mat-card [hidden]="!product.visibilty" class="example-card" style="margin: 15px;">
           <mat-card-header>

@@ -9,3 +9,8 @@
   textarea{
     width: 100%;
   }
+
+  .scroll{
+    height: 120px;
+    overflow: scroll;
+  }

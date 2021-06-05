@@ -56,7 +56,7 @@ if(this.selectedFile==undefined){
           window.location.reload();
         }, error => {
           console.error("error : ",error)
-          this.snack.open('Image is compulsory', 'OK', {
+          this.snack.open('Something went wrong!', 'OK', {
             duration: 2000
           });
         });

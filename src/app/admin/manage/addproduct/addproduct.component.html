@@ -44,7 +44,7 @@
     <br>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Product Description</mat-label>
-        <textarea matInput name="description" required formControlName="descr"></textarea>
+        <textarea matInput rows="7" name="description" required formControlName="descr"></textarea>
         <mat-hint style="color: red;" *ngIf="productForm.get('descr').touched && productForm.get('descr').invalid">
             <p *ngIf="productForm.get('descr').errors.required"> Description is required</p>
         </mat-hint>

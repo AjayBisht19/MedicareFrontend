@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { product } from 'src/app/admin/manage/product';
@@ -9,7 +10,7 @@ import { product } from 'src/app/admin/manage/product';
 })
 export class UserhomeComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private snackbar:MatSnackBar) { }
 
   products: product[] = [];
   categories: [];
@@ -22,19 +23,27 @@ export class UserhomeComponent implements OnInit {
   disDate = true;
   disPrice = false;
   disName = false;
+  loading:boolean=true;
   ngOnInit(): void {
-    this.userService.getProducts().subscribe((data: any) => {
-      this.products = [];
-      data.forEach((pro: product) => {
-        this.main = pro
-        this.retrieveResonse = pro.image;
-        this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
-        this.main.visibilty = true
-        this.products.push(this.main);
+  
+      this.userService.getProducts().subscribe((data: any) => {
+        this.products = [];
+        data.forEach((pro: product) => {
+          this.main = pro
+          this.retrieveResonse = pro.image;
+          this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
+          this.main.visibilty = true
+          this.products.push(this.main);
+        })
+        this.loading=false
+      }, error => {
+        console.log("error ", error);
+        this.snackbar.open('Something went wrong!!' ,'OK', {
+          duration: 2000
+        })
+
       })
-    }, error => {
-      console.log("error ", error);
-    })
+     
 
     this.userService.getCategories().subscribe((data: any) => {
       this.categories = data;

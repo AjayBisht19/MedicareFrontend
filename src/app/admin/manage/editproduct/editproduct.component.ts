@@ -62,7 +62,7 @@ export class EditproductComponent implements OnInit {
 
       }
     },error=>{
-      this.snack.open('Make sure file is image', 'Try again!', {
+      this.snack.open('Something went wrong!', 'OK', {
         duration: 2000
       });
     })
