@@ -33,12 +33,6 @@ export class CartComponent implements OnInit {
 
     this.userService.getCartProducts().subscribe((data: any) => {
       this.products = [];
-      data.forEach((pro: product) => {
-        this.main = pro
-        this.retrieveResonse = pro.image;
-        this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
-        this.products.push(this.main);
-      })
       this.cartLength = this.products.length;
     }, error => {
       console.log("error ", error);

@@ -38,14 +38,12 @@ export class ManageComponent implements OnInit {
   ngOnInit(): void {
     
     this.adminService.getProducts().subscribe((data: any) => {
-      this.products = [];
-      data.forEach((pro: product) => {
-        this.main = pro
-        this.retrieveResonse = pro.image;
-        this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
-        this.main.visibilty=true
-        this.products.push(this.main);
-      })
+      this.products = data;
+
+      this.products.forEach(element => {
+        element.visibilty=true
+      });
+     
       this.loading=false
     }, error => {
       console.log("error ", error);

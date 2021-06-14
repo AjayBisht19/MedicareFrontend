@@ -21,8 +21,7 @@ export class ProductComponent implements OnInit {
     console.log(this.id);
     this.adminService.getProduct(this.id).subscribe((data:any)=>{
       this.product=data;
-      this.retrieveResonse = data.image;
-      this.product.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
+     
     })    
   }
 

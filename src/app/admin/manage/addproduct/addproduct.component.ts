@@ -24,51 +24,21 @@ export class AddproductComponent implements OnInit {
       quantity: new FormControl(''),
       descr: new FormControl(''),
       seller: new FormControl(''),
+      imageURL:new FormControl('')
     });
   }
 
-  public onFileChanged(event) {
-    console.log("change file")
-    this.selectedFile = event.target.files[0];
-  }
-
-
-
-  
+ 
   onUpload() {
-    const uploadImageData = new FormData();
-if(this.selectedFile==undefined){
-  this.snack.open('Image is compulsory', 'OK', {
-    duration: 2000
-  });
-}
-    console.log(this.productForm.value)
-    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
-    
-    this.productForm['image'] = uploadImageData;
-    this.adminService.postImage(uploadImageData).subscribe((data: any) => {
-      console.log("response status ", data.status)
-      console.log("Data : ",data)
-      if (data) {
         this.adminService.postData(this.productForm.value).toPromise().then(data => {
           console.log(data)
           swal.fire('Product added', "", 'success');
-          window.location.reload();
-        }, error => {
-          console.error("error : ",error)
-          this.snack.open('Something went wrong!', 'OK', {
-            duration: 2000
-          });
-        });
-
-      }
+          window.location.reload();      
     },error=>{
-      this.snack.open('Image is compulsory', 'OK', {
+      this.snack.open('Something went wrong', 'OK', {
         duration: 2000
       });
     })
-
-
   }
 
 

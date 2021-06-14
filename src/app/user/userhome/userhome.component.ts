@@ -14,11 +14,8 @@ export class UserhomeComponent implements OnInit {
 
   products: product[] = [];
   categories: [];
-  main: product;
   search: String;
-  retrievedImage: any;
-  base64Data: any;
-  retrieveResonse: any;
+ 
   allProducts: boolean;
   disDate = true;
   disPrice = false;
@@ -27,14 +24,10 @@ export class UserhomeComponent implements OnInit {
   ngOnInit(): void {
   
       this.userService.getProducts().subscribe((data: any) => {
-        this.products = [];
-        data.forEach((pro: product) => {
-          this.main = pro
-          this.retrieveResonse = pro.image;
-          this.main.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
-          this.main.visibilty = true
-          this.products.push(this.main);
-        })
+        this.products = data;
+        this.products.forEach(element => {
+          element.visibilty = true
+        });
         this.loading=false
       }, error => {
         console.log("error ", error);

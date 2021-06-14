@@ -3,7 +3,7 @@ export class product{
     name:String;
     price:number;
     category:String;
-    image:any;
+    imageURL:String;
     quantity:number;
     seller:String;
     descr:string;

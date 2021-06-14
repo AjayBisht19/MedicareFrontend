@@ -13,8 +13,7 @@ import swal from 'sweetalert2';
 export class UserproductComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private userService:UserService, private router: Router,private snack: MatSnackBar) { }
-  product:product
-  retrieveResonse:string
+  product:product;
   public id: any;
 
   ngOnInit(): void {
@@ -22,8 +21,6 @@ export class UserproductComponent implements OnInit {
     console.log(this.id);
     this.userService.getProduct(this.id).subscribe((data:any)=>{
       this.product=data;
-      this.retrieveResonse = data.image;
-      this.product.image = 'data:image/jpeg;base64,' + this.retrieveResonse;
     })  
   }
 

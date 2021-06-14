@@ -51,7 +51,14 @@
     </mat-form-field>
     <br>
 
-    <input (change)="onFileChanged($event)" type="file" accept="image/png, image/jpeg" required>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Product Image URL</mat-label>
+        <input matInput type="text" name="imageURL" required formControlName="imageURL">
+        <mat-hint style="color: red;"
+            *ngIf="productForm.get('imageURL').touched && productForm.get('imageURL').invalid">
+            <p *ngIf="productForm.get('imageURL').errors.required"> Image URL is required</p>
+        </mat-hint>
+    </mat-form-field>
     <br><br>
 
     <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="" [disabled]="productForm.invalid">Submit</button>
