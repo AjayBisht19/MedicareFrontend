@@ -20,10 +20,7 @@ export class CartComponent implements OnInit {
   
   address: FormGroup;
   products: product[] = [];
-  main: product;
-  retrievedImage: any;
-  base64Data: any;
-  retrieveResonse: any;
+ 
   cartLength: number;
 
   ngOnInit(): void {
@@ -32,7 +29,7 @@ export class CartComponent implements OnInit {
     });
 
     this.userService.getCartProducts().subscribe((data: any) => {
-      this.products = [];
+      this.products = data;
       this.cartLength = this.products.length;
     }, error => {
       console.log("error ", error);

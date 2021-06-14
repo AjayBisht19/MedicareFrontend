@@ -9,7 +9,7 @@ export class AdminService {
 
   constructor(private http:HttpClient) { }
   
-  baseUrl = `http://localhost:7000`;
+  baseUrl = `http://3.92.210.35:7011`;
 
   getProducts(){
     return this.http.get(`${this.baseUrl}/products`);
@@ -31,17 +31,13 @@ export class AdminService {
   getProduct(id){
     return this.http.get(`${this.baseUrl}/admin/product/${id}`);
   }
-  updateImage(id,uploadImageData){
-    return this.http.post(`${this.baseUrl}/admin/product/${id}/editImage`, uploadImageData,{responseType:"text"})
-  }
+ 
 
   updateData(id,productValues){
     return this.http.post(`${this.baseUrl}/admin/product/${id}/editData`,productValues);
   }
 
-  postImage(uploadImageData){
-    return this.http.post(`${this.baseUrl}/admin/upload/`, uploadImageData,{responseType:"text"})
-  }
+ 
 
   postData(productValues){
     return this.http.post(`${this.baseUrl}/admin/uploadData/`, productValues)

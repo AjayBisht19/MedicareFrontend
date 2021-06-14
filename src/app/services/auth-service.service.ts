@@ -9,7 +9,7 @@ export class AuthServiceService {
   public loginStatusSubject=new Subject<boolean>();
   constructor(private http:HttpClient) { }
  
- baseURL="http://localhost:7000";
+ baseURL="http://3.92.210.35:7011";
 
  checkUsername(username){
    return this.http.get(`${this.baseURL}/checkUsername/${username}`);

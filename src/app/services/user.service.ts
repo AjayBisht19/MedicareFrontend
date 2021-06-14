@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl=`http://localhost:7000`;
+  baseUrl=`http://3.92.210.35:7011`;
 
   getProducts(){
     return this.http.get<object[]>(`${this.baseUrl}/user/products`);
